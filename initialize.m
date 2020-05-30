@@ -1,4 +1,4 @@
-function [voxel,dimensions,minMax,allData]=initialize(dataFile,nuclei,presynaptic,postsynaptic,extra)
+function [voxel,dimensions,minMax,allData] = initialize(dataFile,nuclei,presynaptic,postsynaptic,extra)
 
 %open datafile
 data=bfopen(dataFile);
