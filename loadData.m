@@ -13,7 +13,7 @@ postsynaptic=3;
 %set the thresholds for the data
  threshold=[.1,.08,.08,.05];
  
- %set the range forh te median filter
+ %set the range for the median filter
 medRangeArray=[8,8;7,7;7,7;8,8];
 
 %ignore this
@@ -23,7 +23,7 @@ plainData=allData;
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 
 
-%For the following fuinction to filter data
+%For the following function to filter data
 isNucleus=[true,false,false,false];
 
 %filter data by channel
