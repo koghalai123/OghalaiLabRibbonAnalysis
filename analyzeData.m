@@ -1,4 +1,4 @@
-function [allFiltered,newCenters,mu,sendPre,sendPost]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
+function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
 
 %%%%THIS IS JUST THE FUNCTION FORM OF LOADDATA. IT IS USED IN THE GUI FOR
 %%%%DOING EVERYTHING IN LOAD DATA.
@@ -30,7 +30,7 @@ end
 
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),rangeN,sensitivity,stopValue,startValue,radius);
 
-  [newCenters,mu]=clusterNuclei(storeCenters,storeRadii,voxel);
+  [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
   
 
 %      rangeR=[1000,2048];
@@ -44,6 +44,11 @@ end
         [ribbons]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,startValue,stopValue);
         ribbon(i).points=ribbons;
         [ribbon(i).grouped,noFit(i).points]=ribbonAnalysis(ribbon(i).points);
+        if i==1
+            discardedRPre=noFit;
+        else
+            discardedRPost=noFit;
+        end
     end
 bySlice=struct([]);
 

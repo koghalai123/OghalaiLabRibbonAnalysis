@@ -13,17 +13,17 @@ postsynaptic=3;
 %set the thresholds for the data
  threshold=[.1,.08,.08,.05];
  
- %set the range for the median filter
+ %set the range forh te median filter
 medRangeArray=[8,8;7,7;7,7;8,8];
 
 %ignore this
-%plainData=allData;
+plainData=allData;
 
 %preallocate space for the filtered data based on metadata
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 
 
-%For the following function to filter data
+%For the following fuinction to filter data
 isNucleus=[true,false,false,false];
 
 %filter data by channel
@@ -42,13 +42,12 @@ range=[1200,1500];
 %set estimated radius range of the nuclei
 radius=[50,90];
 
-%finds circles on each slice for the nucleus channel using the filtered
+%finds circles on each slice for hte nucleus channel using the filtered
 %data
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),range,sensitivity,stopValue,startValue,radius);
 
  %clusters them together and outputs the final nucleus centers and radii
-  [newCenters,mu]=clusterNuclei(storeCenters,storeRadii,voxel);
-  
+  [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
 
 %set Y range for ribbons
      range=[1000,2048];
@@ -73,6 +72,11 @@ radius=[50,90];
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.
         [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points);
+        if i==1
+            discardedRPre=noFit;
+        else
+            discardedRPost=noFit;
+        end
     end
 bySlice=struct([]);
 

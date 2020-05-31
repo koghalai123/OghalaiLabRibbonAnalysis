@@ -1,11 +1,15 @@
-function [newCenters,mu]=clusterNuclei(storeCenters,storeRadii,voxel)
+function [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel)
 %     [b,idx2,outliers]=deleteoutliers([storeCenters(:,1),storeCenters(:,2)*1.5],.15);
 
 %Density based clustering
-idx=dbscan([storeCenters(:,1),storeCenters(:,2)],20,10);
-
+idx=dbscan([storeCenters(:,1),storeCenters(:,2)],20,8);
+gscatter(storeCenters(:,1),storeCenters(:,2),idx);
 %gscatter(storeCenters(:,1),storeCenters(:,2),idx);
 grouped=struct([]);
+
+discardedN(:,1:3)=storeCenters(idx(:,1)==-1,:);
+discardedN(:,4)=storeRadii(idx(:,1)==-1,:);
+
 
 %Remove the data points which did not fit into clusters
 storeCenters=storeCenters(idx(:,1)~=-1,:);
