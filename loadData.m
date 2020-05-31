@@ -17,7 +17,7 @@ postsynaptic=3;
 medRangeArray=[8,8;7,7;7,7;8,8];
 
 %ignore this
-plainData=allData;
+%plainData=allData;
 
 %preallocate space for the filtered data based on metadata
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
@@ -42,7 +42,7 @@ range=[1200,1500];
 %set estimated radius range of the nuclei
 radius=[50,90];
 
-%finds circles on each slice for hte nucleus channel using the filtered
+%finds circles on each slice for the nucleus channel using the filtered
 %data
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),range,sensitivity,stopValue,startValue,radius);
 
