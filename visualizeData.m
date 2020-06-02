@@ -29,6 +29,7 @@ H=figure;
 for i=1:size(allData,3)
     
     %nucleus(first channel)
+    %test
     subplot(2,4,1);
     imshow(allData(:,:,i,1),'DisplayRange',[0,65535]);
     
