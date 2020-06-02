@@ -11,7 +11,7 @@ postsynaptic=3;
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
 
 %set the thresholds for the data
- threshold=[.1,.08,.08,.05];
+ threshold=[.1,.06,.07,.05];
  
  %set the range forh te median filter
 medRangeArray=[8,8;7,7;7,7;8,8];
@@ -40,7 +40,7 @@ sensitivity=.972;
 %set Y boundaries for the nuclei
 range=[1200,1500];
 %set estimated radius range of the nuclei
-radius=[50,90];
+radius=[60,100];
 
 %finds circles on each slice for hte nucleus channel using the filtered
 %data

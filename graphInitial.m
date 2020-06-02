@@ -3,6 +3,19 @@ UIAxes1.cla;
 UIAxes2.cla;
 UIAxes3.cla;
 
+zoom(UIAxes1,'off');
+UIAxes1.XLimMode = 'auto';
+UIAxes1.YLimMode = 'auto';
+
+zoom(UIAxes2,'off');
+UIAxes2.XLimMode = 'auto';
+UIAxes2.YLimMode = 'auto';
+
+zoom(UIAxes3,'off');
+UIAxes3.XLimMode = 'auto';
+UIAxes3.YLimMode = 'auto';
+
+
 P1=imshow(data,'parent',UIAxes1);
 axis(UIAxes1,'equal');
 
@@ -13,29 +26,11 @@ axis(UIAxes2,'equal');
 P3=imshow(allFiltered,'parent',UIAxes3);
 axis(UIAxes3,'equal');
 
-
-hold(UIAxes1,'on');
-hold(UIAxes3,'on');
-
-
-
-%make a variable for cos and sin so that it is not calculated every time
-
-%plot(v, 'o');
-%plot(v, 'o', 'MarkerSize', 4);
-
-
-
-S1=scatter(UIAxes1,storeCenters(:,1),storeCenters(:,2),storeRadii,'r');
-S2=scatter(UIAxes3,storeCenters(:,1),storeCenters(:,2),storeRadii,'r');
-
-
-
-hold(UIAxes1,'on');
-hold(UIAxes3,'on');
-
-theta=linspace(0,2*pi,10);
-plot(UIAxes1,theta,sin(theta));
-
+if size(storeCenters,1)>0
+    [S1,S2]=graphCircles(UIAxes1,UIAxes3,storeCenters,storeRadii);
+else
+    S1=1;
+    S2=2;
+end
 
 end
