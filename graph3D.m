@@ -24,9 +24,12 @@ for b = 1:2
         end
     end
 end
-S1=scatter3(UIAxes,discardedRPre(:,1),discardedRPre(:,2),discardedRPre(:,3),10,'r');
-S2=scatter3(UIAxes,discardedRPost(:,1),discardedRPost(:,2),discardedRPost(:,3),10,'o');
-
+if size(discardedRPre,1)>0
+    S1=scatter3(UIAxes,discardedRPre(:,1),discardedRPre(:,2),discardedRPre(:,3),10,'r');
+end
+if size(discardedRPost,1)>0
+    S2=scatter3(UIAxes,discardedRPost(:,1),discardedRPost(:,2),discardedRPost(:,3),10,'o');
+end
 hold(UIAxes,'off');
 
 view(UIAxes,3);
