@@ -1,6 +1,6 @@
 function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints)
     ribbonFinal=struct([]);
-    idx=dbscan([ribbonPoints(:,1)*.0495,ribbonPoints(:,2)*.0495,ribbonPoints(:,3)*.026],.2,2);
+    idx=dbscan([ribbonPoints(:,1)*.0495,ribbonPoints(:,2)*.0495,ribbonPoints(:,3)*.026],.2,3);
     colors=hsv(max(idx));
     D=ribbonPoints;
     figure;

@@ -1,5 +1,7 @@
 function [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stopValue)
 
+
+
 for j = startValue:size(scaledData,3)-stopValue
         %find points in the data
         [col,row]=find(scaledData(:,:,j)==1);
@@ -27,7 +29,11 @@ for j = startValue:size(scaledData,3)-stopValue
             storeCenters2(j).centers=[centers,ones(size(centers,1),1)*j];
         end
 end
-            ribbons=vertcat(storeCenters2(:).centers);
+if exist('storeCenters2', 'var')
+    ribbons=vertcat(storeCenters2(:).centers);
+else
+    ribbons=[];
+end
 
    
   end

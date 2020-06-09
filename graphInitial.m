@@ -3,21 +3,21 @@ UIAxes1.cla;
 UIAxes2.cla;
 UIAxes3.cla;
 
-zoom(UIAxes1,'off');
-UIAxes1.XLimMode = 'auto';
-UIAxes1.YLimMode = 'auto';
-
-zoom(UIAxes2,'off');
-UIAxes2.XLimMode = 'auto';
-UIAxes2.YLimMode = 'auto';
-
-zoom(UIAxes3,'off');
-UIAxes3.XLimMode = 'auto';
-UIAxes3.YLimMode = 'auto';
+% zoom(UIAxes1,'off');
+% UIAxes1.XLimMode = 'auto';
+% UIAxes1.YLimMode = 'auto';
+% 
+% zoom(UIAxes2,'off');
+% UIAxes2.XLimMode = 'auto';
+% UIAxes2.YLimMode = 'auto';
+% 
+% zoom(UIAxes3,'off');
+% UIAxes3.XLimMode = 'auto';
+% UIAxes3.YLimMode = 'auto';
 
 
 P1=imshow(data,'parent',UIAxes1);
-axis(UIAxes1,'equal');
+
 
 P2=imshow(allFiltered,'parent',UIAxes2);
 axis(UIAxes2,'equal');

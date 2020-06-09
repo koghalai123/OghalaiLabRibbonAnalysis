@@ -11,10 +11,10 @@ postsynaptic=3;
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
 
 %set the thresholds for the data
- threshold=[.1,.06,.07,.05];
+ threshold=[.07,.06,.07,.05];
  
  %set the range forh te median filter
-medRangeArray=[8,8;7,7;7,7;8,8];
+medRangeArray=[6,6;5,5;6,6;8,8];
 
 %ignore this
 plainData=allData;
@@ -50,7 +50,7 @@ radius=[60,100];
   [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
 
 %set Y range for ribbons
-     range=[1000,2048];
+     range=[1200,1700];
     ribbonSlices=[presynaptic,postsynaptic];
     %set estimated radius of ribbons
     ribbonRadius=10;

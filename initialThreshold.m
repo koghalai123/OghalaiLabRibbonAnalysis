@@ -9,7 +9,7 @@ function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globa
                 f=imfilter(noThreshold(:,:,i),h);
                 F=medfilt2(f,medRange);
                 G=(F>threshold);
-                filteredData(:,:,i)=medfilt2(G,medRange);
+                filteredData(:,:,i)=G;%medfilt2(G,medRange);
         end
     else
         almostFilteredData=noThreshold>threshold;

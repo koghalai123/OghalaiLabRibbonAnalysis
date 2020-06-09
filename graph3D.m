@@ -38,5 +38,5 @@ view(UIAxes,3);
 % 
 % set(B(:,1),'UIAxesaceAlpha',0);
 
-% axis(UIAxes,'equal');
+%axis(UIAxes,'equal');
 end
