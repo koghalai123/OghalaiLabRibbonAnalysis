@@ -19,39 +19,40 @@ dataFile='IB09MidControlLeft2.czi';
 
 
 %add bfmatlab to path before running
-[voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
+% [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
 
 
 
 
 H=figure;
 %Go through all slices
-for i=1:size(allData,3)
-    
-    %nucleus(first channel)
-    %test
-    subplot(2,4,1);
-    imshow(allData(:,:,i,1),'DisplayRange',[0,65535]);
-    
-    %presynaptic ribbon(second channel)
-    subplot(2,4,2);
-    imshow(allData(:,:,i,2),'DisplayRange',[0,65535]);
-    
-    %postsynaptic density(third channel)
-    subplot(2,4,3);
-    imshow(allData(:,:,i,3),'DisplayRange',[0,65535]);
-    
-    %support cells(fourth channel)
-    subplot(2,4,4);
-    imshow(allData(:,:,i,4),'DisplayRange',[0,65535]);
-    
-    %color image combining the three we care about
-    subplot(2,4,5)
-    Blue=allData(:,:,i,1)/65535;
-    Green=allData(:,:,i,2)/65535;
-    Red=allData(:,:,i,3)/65535;
-    color=cat(3,Red,Green,Blue);
-    imshow(color,'DisplayRange',[0,1]);
-    pause(1);
-end
+% for i=1:size(allData,3)
+%     
+%     %nucleus(first channel)
+%     subplot(2,4,1);
+    imshow(allData(:,:,10,1),'DisplayRange',[0,65535]);
+%   
+figure;
+imshow(allFiltered(:,:,10,1));
+%     %presynaptic ribbon(second channel)
+%     subplot(2,4,2);
+%     imshow(allData(:,:,i,2),'DisplayRange',[0,65535]);
+%     
+%     %postsynaptic density(third channel)
+%     subplot(2,4,3);
+%     imshow(allData(:,:,i,3),'DisplayRange',[0,65535]);
+%     
+%     %support cells(fourth channel)
+%     subplot(2,4,4);
+%     imshow(allData(:,:,i,4),'DisplayRange',[0,65535]);
+%     
+%     %color image combining the three we care about
+%     subplot(2,4,5)
+%     Blue=allData(:,:,i,1)/65535;
+%     Green=allData(:,:,i,2)/65535;
+%     Red=allData(:,:,i,3)/65535;
+%     color=cat(3,Red,Green,Blue);
+%     imshow(color,'DisplayRange',[0,1]);
+%     pause(1);
+% end
 

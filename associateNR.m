@@ -1,10 +1,12 @@
-function [n,all]=associateNR(ribbon,newCenters,mu,voxel,UIAxes)
-newCenters2=[];
-newCenters2=newCenters./voxel;
-mu2=mu/voxel(1);
+function [n,all]=associateNR(ribbon,newCenters,mu,voxel,UIAxes,ribbonRad)
+mu2=mu;
 ribbonClusters=struct([]);
 ribbonClusters2=struct([]);
 all=struct([]);
+
+forScale=voxel;
+
+UIAxes.cla;
 
 hold(UIAxes,'on');
 [x,y,z]=sphere;
@@ -14,9 +16,9 @@ r=gobjects;
 for b =1:2
     newCenters2=[];
     newCenters2=newCenters./voxel;
-    mu2=mu/voxel(1);
+    mu2=mu./voxel;
     for i =1:size(ribbon(b).grouped,2)
-        ribbonClusters(b).average(i,1:3)=mean(ribbon(b).grouped(i).grouped(:,1:3));
+        ribbonClusters(b).average(i,1:4)=[mean(ribbon(b).grouped(i).grouped(:,1:3)),(max(ribbon(b).grouped(i).grouped(:,3))-min(ribbon(b).grouped(i).grouped(:,3)))/2];
         
     end
 
@@ -54,7 +56,7 @@ for b =1:2
         temp=gobjects;
         for i = 1:size(ribbonClusters2(b).grouped(num).grouped,1)
             
-            temp(i,1)=surf(UIAxes,10*x+ribbonClusters2(b).grouped(num).grouped(i,1),10*y+ribbonClusters2(b).grouped(num).grouped(i,2),10*z+ribbonClusters2(b).grouped(num).grouped(i,3));
+            temp(i,1)=surf(UIAxes,forScale(1)*(ribbonRad*x+ribbonClusters2(b).grouped(num).grouped(i,1)),forScale(2)*(ribbonRad*y+ribbonClusters2(b).grouped(num).grouped(i,2)),forScale(3)*(ribbonClusters2(b).grouped(num).grouped(i,4)*z+ribbonClusters2(b).grouped(num).grouped(i,3)),'UserData',[forScale(1)*ribbonClusters2(b).grouped(num).grouped(i,1),forScale(2)*ribbonClusters2(b).grouped(num).grouped(i,2),forScale(3)*ribbonClusters2(b).grouped(num).grouped(i,3)],'FaceColor',[0,2-b,b-1],'EdgeAlpha',0);
            
         end
         if size(ribbonClusters2(b).grouped(num).grouped,1)>0
@@ -66,7 +68,7 @@ for b =1:2
 
 end
 for num = 1:size(newCenters2,1)
-    n(num,1)=surf(UIAxes,mu2(num)*x+newCenters2(num,1),mu2(num)*y+newCenters2(num,2),mu2(num)*z+newCenters2(num,3))
+    n(num,1)=surf(UIAxes,forScale(1)*(mu2(num,1)*x+newCenters2(num,1)),forScale(2)*(mu2(num,2)*y+newCenters2(num,2)),forScale(3)*(mu2(num,3)*z+newCenters2(num,3)),'UserData',[forScale(1)*newCenters2(num,1),forScale(2)*newCenters2(num,2),forScale(3)*newCenters2(num,3)]);
     
 end
 

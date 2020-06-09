@@ -13,8 +13,8 @@ else
     hold(UIAxes1,'on');
     hold(UIAxes3,'on');
 
-    S1=scatter(UIAxes1,storeCenters(:,1),storeCenters(:,2),storeRadii,color);
-    S2=scatter(UIAxes3,storeCenters(:,1),storeCenters(:,2),storeRadii,color);
+    S1(:,1)=scatter(UIAxes1,storeCenters(:,1),storeCenters(:,2),storeRadii,color);
+    S2(:,1)=scatter(UIAxes3,storeCenters(:,1),storeCenters(:,2),storeRadii,color);
 
     hold(UIAxes1,'on');
     hold(UIAxes3,'on');
