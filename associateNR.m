@@ -68,7 +68,7 @@ for b =1:2
 
 end
 for num = 1:size(newCenters2,1)
-    n(num,1)=surf(UIAxes,forScale(1)*(mu2(num,1)*x+newCenters2(num,1)),forScale(2)*(mu2(num,2)*y+newCenters2(num,2)),forScale(3)*(mu2(num,3)*z+newCenters2(num,3)),'UserData',[forScale(1)*newCenters2(num,1),forScale(2)*newCenters2(num,2),forScale(3)*newCenters2(num,3)]);
+    n(num,1)=surf(UIAxes,forScale(1)*(mu2(num,1)*x+newCenters2(num,1)),forScale(2)*(mu2(num,2)*y+newCenters2(num,2)),forScale(3)*(mu2(num,3)*z+newCenters2(num,3)),'UserData',[forScale(1)*newCenters2(num,1),forScale(2)*newCenters2(num,2),forScale(3)*newCenters2(num,3),mu2(num,:)]);
     
 end
 

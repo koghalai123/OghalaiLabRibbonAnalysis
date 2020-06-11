@@ -1,5 +1,4 @@
 function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globalMin,globalMax)
- 
     filteredData=zeros(size(data,1),size(data,2),size(data,3),'logical');
     difference=globalMax-globalMin;
     noThreshold=(double(data-globalMin)/(difference));
@@ -8,10 +7,12 @@ function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globa
                 h=fspecial('sobel');
                 f=imfilter(noThreshold(:,:,i),h);
                 F=medfilt2(f,medRange);
-                G=(F>threshold);
+                %threshold=prctile(F(:),[percentile],'all');
+                G=F>threshold;
                 filteredData(:,:,i)=G;%medfilt2(G,medRange);
         end
     else
+        %threshold=prctile(noThreshold(:),[percentile],'all');
         almostFilteredData=noThreshold>threshold;
         for i = 1:size(data,3)
             

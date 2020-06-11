@@ -11,7 +11,7 @@ postsynaptic=3;
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
 
 %set the thresholds for the data
- threshold=[.07,.06,.07,.05];
+ threshold=[.07,.06,.1,.05];
  
  %set the range forh te median filter
 medRangeArray=[6,6;5,5;6,6;8,8];
