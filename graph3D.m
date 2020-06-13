@@ -1,6 +1,6 @@
-function [A,B,S1,S2]=graph3D(UIAxes,ribbon,discardedRPre,discardedRPost,newCenters,mu,voxel,isScaled,ribbonRad)
+function [A,B,C,S1,S2]=graph3D(UIAxes,ribbon,discardedRPre,discardedRPost,newCenters,mu,voxel,isScaled,ribbonRad)
 
-UIAxes.cla;
+cla(UIAxes);
 
 if isScaled
     forScale=voxel;
@@ -8,12 +8,18 @@ if isScaled
 elseif ~isScaled
     forScale=ones(1,3);
     axis(UIAxes,'normal');
+    
+    
+    
+    
+    
 end
 
 hold(UIAxes,'on');
 [x,y,z]=sphere;
+C=gobjects();
 for i = 1:size(newCenters,1)
-    surf(UIAxes,forScale(1)*(mu(i)*x+newCenters(i,1))/voxel(1),forScale(2)*(mu(i)*y+newCenters(i,2))/voxel(1),forScale(3)*(mu(i)*z+newCenters(i,3))/voxel(3));
+    C(i,1)=surf(UIAxes,forScale(1)*(mu(i)*x+newCenters(i,1))/voxel(1),forScale(2)*(mu(i)*y+newCenters(i,2))/voxel(1),forScale(3)*(mu(i)*z+newCenters(i,3))/voxel(3));
 end
 color=["b","g"];
 A=gobjects();
