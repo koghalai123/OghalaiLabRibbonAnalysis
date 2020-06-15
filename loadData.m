@@ -4,8 +4,8 @@ dataFile='IB09MidControlLeft2.czi';
 %keep track of which channel is the nuclei, presynaptic ribbon,
 %postsynaptic density,etc
 nuclei=1;
-presynaptic=2;
-postsynaptic=3;
+presynaptic=3;
+postsynaptic=2;
 
 %load in data, find mins and maxes, and get the meta data for the file
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
@@ -78,26 +78,13 @@ radius=[60,100];
             discardedRPost=noFit;
         end
     end
-bySlice=struct([]);
 
 
 %Ignore this part. It is just used to save time when I am experimenting
 %with the GUI
-    for i = 1:2
-        allPoints=(vertcat(ribbon(i).grouped(:).grouped));
-        allPoints2=[allPoints(:,1:2),round(allPoints(:,3))];
-        for j = 1:max(allPoints2(:,3))
-            arr=allPoints((allPoints2(:,3)==j),:);
-            if size(arr,1)>0
-                bySlice(j).points=arr;
-            end
-        end
-        ribbon(i).bySlice=bySlice;
-    end
-    sendPre=ribbon.bySlice;
-    sendPost=ribbon(2).bySlice;
     
-
+    
+[sendPre,sendPost]=ClusteredToSlice(ribbon);
     
     
     

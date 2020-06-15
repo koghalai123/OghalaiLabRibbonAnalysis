@@ -1,13 +1,15 @@
-function [g]=graphFinal(axes,allData,startValue,stopValue)
+function [g]=graphFinal3D(axes,allData,startValue,stopValue,isTrans)
 
+alpha=["none","scaled"];
 
 g=gobjects();
 for z=startValue:size(allData,3)-stopValue
   g(z) = hgtransform(axes,'Matrix',makehgtform('translate',[0 0 z]));
-  image(g(z),allData(:,:,z),'CDataMapping','scaled');
+  image(g(z),allData(:,:,z),'CDataMapping','scaled','AlphaDataMapping',alpha(isTrans+1)); %
   
 end
 view(3)
+
 colormap('gray');
 axes.XLim=[0,size(allData,1)];
 axes.YLim=[0,size(allData,2)];
