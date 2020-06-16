@@ -1,5 +1,10 @@
-function saveData(fileName,nucleusData,ribbonData,voxel)
+function saveData(fileName,nucleusData,ribbonData,voxel,R1Scat,R2Scat,NAssociated,RAssociated)
 txtFile=fopen(fileName,'w');
+fprintf(txtFile,'%-s \n','Voxel Data');
+fprintf(txtFile,'%-15f %-15f %-15f \n',voxel(1),voxel(2),voxel(3));
+
+
+
 fprintf(txtFile,'%-s \n','Nucleus Data');
 fprintf(txtFile,'%-15s %-15s %-15s %-15s \n','XData(micron)','YData(micron)','ZData(micron)','Radius(micron)');
 for i = 1:size(nucleusData,1)
@@ -21,7 +26,7 @@ end
 
 fclose(txtFile);
 
-saveInOrigForm={'Nucleus Data','Presynaptic Ribbon Data','Postsynaptic Ribbon Data';nucleusData,ribbonData(1).grouped,ribbonData(2).grouped};
+saveInOrigForm={'Nucleus Data','Presynaptic Ribbon Data','Postsynaptic Ribbon Data','Voxel Data','R1Scat','R2Scat','NAssociated','RAssociated';nucleusData,ribbonData(1).grouped,ribbonData(2).grouped,voxel,R1Scat,R2Scat,NAssociated,RAssociated};
 origFormName=strcat(fileName,"OrigData.mat");
 save(origFormName,'saveInOrigForm');
 

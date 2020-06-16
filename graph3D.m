@@ -19,7 +19,7 @@ hold(UIAxes,'on');
 [x,y,z]=sphere;
 C=gobjects();
 for i = 1:size(newCenters,1)
-    C(i,1)=surf(UIAxes,forScale(1)*(mu(i)*x+newCenters(i,1))/voxel(1),forScale(2)*(mu(i)*y+newCenters(i,2))/voxel(1),forScale(3)*(mu(i)*z+newCenters(i,3))/voxel(3));
+    C(i,1)=surf(UIAxes,forScale(1)*(mu(i)*x+newCenters(i,1))/voxel(1),forScale(2)*(mu(i)*y+newCenters(i,2))/voxel(1),forScale(3)*(mu(i)*z+newCenters(i,3))/voxel(3),'FaceColor','c');
 end
 color=["b","g"];
 A=gobjects();
@@ -46,6 +46,9 @@ end
 hold(UIAxes,'off');
 
 view(UIAxes,3);
+legend(UIAxes,[A(1,1),B(1,1),C(1,1)],{'Presynaptic','Postsynaptic','Nuclei'});
+
+
 
 % set(A(:,1),'UIAxesaceAlpha',0);
 % 

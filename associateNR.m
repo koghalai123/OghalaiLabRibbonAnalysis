@@ -56,7 +56,7 @@ for b =1:2
         temp=gobjects;
         for i = 1:size(ribbonClusters2(b).grouped(num).grouped,1)
             
-            temp(i,1)=surf(UIAxes,forScale(1)*(ribbonRad*x+ribbonClusters2(b).grouped(num).grouped(i,1)),forScale(2)*(ribbonRad*y+ribbonClusters2(b).grouped(num).grouped(i,2)),forScale(3)*(ribbonClusters2(b).grouped(num).grouped(i,4)*z+ribbonClusters2(b).grouped(num).grouped(i,3)),'UserData',[forScale(1)*ribbonClusters2(b).grouped(num).grouped(i,1),forScale(2)*ribbonClusters2(b).grouped(num).grouped(i,2),forScale(3)*ribbonClusters2(b).grouped(num).grouped(i,3)],'FaceColor',[0,2-b,b-1],'EdgeAlpha',0);
+            temp(i,1)=surf(UIAxes,forScale(1)*(ribbonRad*x+ribbonClusters2(b).grouped(num).grouped(i,1)),forScale(2)*(ribbonRad*y+ribbonClusters2(b).grouped(num).grouped(i,2)),forScale(3)*(ribbonClusters2(b).grouped(num).grouped(i,4)*z+ribbonClusters2(b).grouped(num).grouped(i,3)),'UserData',[forScale(1)*ribbonClusters2(b).grouped(num).grouped(i,1),forScale(2)*ribbonClusters2(b).grouped(num).grouped(i,2),forScale(3)*ribbonClusters2(b).grouped(num).grouped(i,3)],'FaceColor',[0,b-1,2-b],'EdgeAlpha',0);
            
         end
         if size(ribbonClusters2(b).grouped(num).grouped,1)>0
@@ -68,10 +68,11 @@ for b =1:2
 
 end
 for num = 1:size(newCenters2,1)
-    n(num,1)=surf(UIAxes,forScale(1)*(mu2(num,1)*x+newCenters2(num,1)),forScale(2)*(mu2(num,2)*y+newCenters2(num,2)),forScale(3)*(mu2(num,3)*z+newCenters2(num,3)),'UserData',[forScale(1)*newCenters2(num,1),forScale(2)*newCenters2(num,2),forScale(3)*newCenters2(num,3),mu2(num,:)]);
+    n(num,1)=surf(UIAxes,forScale(1)*(mu2(num,1)*x+newCenters2(num,1)),forScale(2)*(mu2(num,2)*y+newCenters2(num,2)),forScale(3)*(mu2(num,3)*z+newCenters2(num,3)),'UserData',[forScale(1)*newCenters2(num,1),forScale(2)*newCenters2(num,2),forScale(3)*newCenters2(num,3),mu2(num,:)],'FaceColor','c');
     
 end
 
+legend(UIAxes,[all(1).associated(1,1).gobject(1,1),all(2).associated(1,1).gobject(1,1),n(1,1)],{'Presynaptic','Postsynaptic','Nuclei'});
 
 
 hold(UIAxes,'off');
