@@ -16,7 +16,7 @@ UIAxes3.cla;
 % UIAxes3.YLimMode = 'auto';
 
 
-P1=imshow(data,'parent',UIAxes1);
+P1=imshow(data/(max(data,[],'all')),'parent',UIAxes1);
 
 
 P2=imshow(allFiltered,'parent',UIAxes2);

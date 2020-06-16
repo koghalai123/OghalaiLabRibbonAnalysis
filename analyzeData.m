@@ -15,6 +15,8 @@ function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,di
 
 % plainData=allData;
 
+%filter data by channel
+
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
@@ -27,10 +29,13 @@ end
 % sensitivity=.972;
 % range=[1200,1500];
 % radius=[50,90];
-
+%finds circles on each slice for hte nucleus channel using the filtered
+%data
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),rangeN,sensitivity,stopValue,startValue,radius);
 
+ %clusters them together and outputs the final nucleus centers and radii
   [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
+
   
 
 %      rangeR=[1000,2048];
@@ -39,32 +44,30 @@ end
 %     minGroup=5;
     ribbon=struct([]);
     noFit=struct([]);
+    
+    
+    %go through the presynaptic ribbon and postsynaptic density channels
+    %for all slices using the filtered data
     for i = 1:2
-        
-        [ribbons]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,startValue,stopValue);
-        ribbon(i).points=ribbons;
-        [ribbon(i).grouped,noFit(i).points]=ribbonAnalysis(ribbon(i).points);
+        %Find all ribbon locations on each slice
+        [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,startValue,stopValue);
+
+        %Group the ribbon locations together to create a 3D ribbon location
+        %array. This part does nto work very well yet.
+        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points);
         if i==1
             discardedRPre=noFit;
         else
             discardedRPost=noFit;
         end
     end
-bySlice=struct([]);
 
-     for i = 1:2
-        allPoints=(vertcat(ribbon(i).grouped(:).grouped));
-        allPoints2=[allPoints(:,1:2),round(allPoints(:,3))];
-        for j = 1:max(allPoints2(:,3))
-            arr=allPoints((allPoints2(:,3)==j),:);
-            if size(arr,1)>0
-                bySlice(j).points=arr;
-            end
-        end
-        ribbon(i).bySlice=bySlice;
-    end
-    sendPre=ribbon.bySlice;
-    sendPost=ribbon(2).bySlice;
+
+%Ignore this part. It is just used to save time when I am experimenting
+%with the GUI
+    
+    
+[sendPre,sendPost]=ClusteredToSlice(ribbon,dimensions);
     
     
     

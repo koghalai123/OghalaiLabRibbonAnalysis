@@ -20,11 +20,10 @@ if strcmpi(obj.SelectionType, 'open') % if it is a double-click event
         t2=transpose([low:high]);
         temp=[ones(size(t2,1),1)*ax.CurrentPoint(1,1),ones(size(t2,1),1)*ax.CurrentPoint(1,2),t2,(en+1)*ones(size(t2,1),1)];
         app.ribbon(str2double(app.CheckThatDataDropDown.Value)-1).grouped(en+1).grouped=temp;
-        [app.presynapticPositions,app.postsynapticPositions]=ClusteredToSlice(app.ribbon);
+        [app.presynapticPositions,app.postsynapticPositions]=ClusteredToSlice(app.ribbon,app.dimensions);
         addToScatter(app,app.Scat3D,g,on/2);
-        mini=find(isgraphics(app.Scat3D(:,1)),1);
-        maxi=size(isgraphics(app.Scat3D(:,1)),1);
-        set(app.Scat3D(mini:maxi,1),'ButtonDownFcn',{@removeRibbon,app,g});
+        indices=find(isgraphics(app.Scat3D(:,1))==1);
+        set(app.Scat3D(indices,1),'ButtonDownFcn',{@removeRibbon,app,g});
     end
 end
 

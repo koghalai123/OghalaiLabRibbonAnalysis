@@ -20,7 +20,7 @@ if event.Button==3
     app.ribbon(str2double(app.CheckThatDataDropDown.Value)-1).grouped(stor)=[];
     delete(app.Scat3D);
     app.Scat3D=gobjects();
-    [app.presynapticPositions,app.postsynapticPositions]=ClusteredToSlice(app.ribbon);
+    [app.presynapticPositions,app.postsynapticPositions]=ClusteredToSlice(app.ribbon,app.dimensions);
 
     for slice=0:le-1
         [Radii,Centers,~,~]=findStats(app,str2double(app.CheckThatDataDropDown.Value),slice+app.FirstSliceEditField.Value);
@@ -30,9 +30,8 @@ if event.Button==3
             [app.Scat3D(slice+app.FirstSliceEditField.Value,1)]=graphCircles3D(p,Centers,Radii,slice,'r');
         end
     end
-    mini=find(isgraphics(app.Scat3D(:,1)),1);
-    maxi=size(isgraphics(app.Scat3D(:,1)),1);
-    set(app.Scat3D(mini:maxi,1),'ButtonDownFcn',{@removeRibbon,app,g});
+    indices=find(isgraphics(app.Scat3D(:,1))==1);
+    set(app.Scat3D(indices,1),'ButtonDownFcn',{@removeRibbon,app,g});
     
     layer=size(findobj(g,'Visible',1),1)/2;
     minimum=find(isgraphics(app.Scat3D),1);

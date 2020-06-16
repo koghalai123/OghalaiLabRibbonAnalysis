@@ -1,5 +1,5 @@
 
-dataFile='IB09MidControlLeft2.czi';
+dataFile='IB04MiddleControlLeft1488CTBP2647PhalloidinDAPI_9_12_18.czi';
 
 %keep track of which channel is the nuclei, presynaptic ribbon,
 %postsynaptic density,etc
@@ -63,6 +63,7 @@ radius=[60,100];
     ribbon=struct([]);
     noFit=struct([]);
     
+    
     %go through the presynaptic ribbon and postsynaptic density channels
     %for all slices using the filtered data
     for i = 1:2
@@ -84,7 +85,7 @@ radius=[60,100];
 %with the GUI
     
     
-[sendPre,sendPost]=ClusteredToSlice(ribbon);
+[sendPre,sendPost]=ClusteredToSlice(ribbon,dimensions);
     
     
     
