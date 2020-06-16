@@ -11,7 +11,7 @@ postsynaptic=2;
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);
 
 %set the thresholds for the data
- threshold=[.07,.06,.1,.05];
+ threshold=[.1,.11,.11,.05];
  
  %set the range forh te median filter
 medRangeArray=[6,6;5,5;6,6;8,8];
@@ -32,8 +32,8 @@ for b =1:4
 end
 
 %set limits on which slices we want to look at
-startValue=1;
-stopValue=20;
+startValue=50;
+stopValue=6;
 
 %set sensitivity for circle detection of nuclei
 sensitivity=.972;

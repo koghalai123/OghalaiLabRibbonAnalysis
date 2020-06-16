@@ -16,7 +16,7 @@ end
 
 
 g=gobjects();
-for z=startValue:size(allData2,3)-stopValue
+for z=1:size(allData2,3)
   g(z) = hgtransform(axes,'Matrix',makehgtform('translate',[0 0 z]));
   image(g(z),allData2(:,:,z),'CDataMapping','scaled','AlphaDataMapping',alpha(isTrans+1)); %
   

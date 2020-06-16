@@ -2,7 +2,7 @@ function [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel)
 %     [b,idx2,outliers]=deleteoutliers([storeCenters(:,1),storeCenters(:,2)*1.5],.15);
 
 %Density based clustering
-idx=dbscan([storeCenters(:,1),storeCenters(:,2)],20,8);
+idx=dbscan([storeCenters(:,1),storeCenters(:,2),storeCenters(:,3)],30,8);
 % gscatter(storeCenters(:,1),storeCenters(:,2),idx);
 %gscatter(storeCenters(:,1),storeCenters(:,2),idx);
 grouped=struct([]);
