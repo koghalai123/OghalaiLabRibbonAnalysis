@@ -8,7 +8,7 @@ for b = 1:2
     for i = 1:size(nucleusData,1)
         dist(:,i)=(((nucleusData(i,1)-scaledPre(:,1)).^2)+((nucleusData(i,2)-scaledPre(:,2)).^2)+((nucleusData(i,3)-scaledPre(:,3)).^2)).^(1/2);
     end
-    [row,col]=find(dist<3);
+    [row,col]=find(dist<3.2);
     toDelete=[];
     toDelete=unique(row);
     allGroups=[1:size(scaledPre,1)];
