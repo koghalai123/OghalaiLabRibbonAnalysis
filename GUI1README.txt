@@ -1,5 +1,6 @@
 Instructions for analyzing a dataset:
-1. add all the necessary files to a folder in Matlab
+1. add all the necessary files to a folder in Matlab. Most of it can be downloaded from the master github branch(https://github.com/koghalai123/OghalaiLabRibbonAnalysis.git),
+but you will also need bfmatlab and sphereFit, both of which will popup when you type in their name + matlab in the search bar on the internet.
 2. add bfmatlab amd sphereFit to the path. This needs to be done everytime Matlab is restarted. Just right click it and you will see an option to do this
 3. Launch GUI1.mlapp
 4. Run the program
@@ -42,3 +43,21 @@ little buggy and you may have to rotate the view angle before it works).
 13. The "NoOverlap" tab gets rid of nuclei that overlap in the X Axis and their associated nuclei.
 14. The "Representative" tab shows the associated nuclei and ribbons.
 
+
+A FEW THINGS TO NOTE: 
+1. The radius of the nuclei isnt going to be 100% correct due to the image enhancement and thresholding 
+removing the edges of blurry objects. The measurements I have gotten are a radius of somewhere between 3.5-3.8 microns, which
+is about right. When graphing the sizes, they might not turn out right due to the way it is being graphed. Without going
+into too much detail, it is because I graphed them as a scatter object, which keeps it's size(relative to the width of the 
+screen), even when zooming in or out). When setting the zoom settings, it causes the scatterpoints to have the wrong size. To verify the 
+radius of the nuclei, use the actual radius data I got(which can be accessed through loadData.m), or use the "Background" entry with the 
+nucleus input. It correctly graphs the radius I get and it's position relative to the data. In the past, this has been spot on.
+2. The size of the ribbons are not correct ANYWHERE. It is a manual input. In some places, I have even entered my own preferences,
+so it cannot really be changed by the user. For the purpose of Ido's paper, I have heard this is okay.
+3. You MUST go through the "After Analysis", "3D Graph", "NoOverlap", and "Representative" tabs to ensure the data is correct. 
+Wherever possible, update the data so it is accurate.
+4. There will be bugs. I will fix them if you email them to me at koghalai@usc.edu. I will need a picture of the error message,
+a description of what you were doing when it ocurred, and the dataset where it happened. I also recommend fetching from the master
+github branch(https://github.com/koghalai123/OghalaiLabRibbonAnalysis.git) whenever possible to ensure your version is up to date.
+5. SCRUTINIZE THE DATA. It is very possible that I have made mistakes and I cannot guaranttee that my program will not have bugs.
+Please make sure that your data looks like it should. This is mainly done on the "After Analysis" tab, but also in the other tabs mentioned in point 3
