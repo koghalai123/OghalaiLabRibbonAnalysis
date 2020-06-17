@@ -61,3 +61,9 @@ a description of what you were doing when it ocurred, and the dataset where it h
 github branch(https://github.com/koghalai123/OghalaiLabRibbonAnalysis.git) whenever possible to ensure your version is up to date.
 5. SCRUTINIZE THE DATA. It is very possible that I have made mistakes and I cannot guaranttee that my program will not have bugs.
 Please make sure that your data looks like it should. This is mainly done on the "After Analysis" tab, but also in the other tabs mentioned in point 3
+6. I recommend:
+Epsilon value of 6-8
+minimum ribbon size of 5
+thresholds somewhere in the range of .05 to .15
+median ranges between 5-9
+nucleus radius of 100(although this depends on the metadata, as this is in pixels, not micrometers)
