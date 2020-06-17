@@ -62,7 +62,7 @@ end
         end
     end
 
-
+ribbon=removePreCloseRib(newCenters,ribbon,voxel);
 %Ignore this part. It is just used to save time when I am experimenting
 %with the GUI
     
