@@ -28,7 +28,7 @@ function saveData(fileName,nucleusData,ribbonData,voxel,R1Scat,R2Scat,NAssociate
 
 
 %Saving for easy use in Excel
-XLFileNames=[strcat(fileName,"Pre.xlsx");strcat(fileName,"Post.xlsx");strcat(fileName,"Nuc.xlsx");strcat(fileName,"VecR1.xlsx");strcat(fileName,"VecR2.xlsx")];
+XLFileNames=[strcat(fileName,"Pre.xlsx");strcat(fileName,"Post.xlsx");strcat(fileName,"Nuc.xlsx");strcat(fileName,"VecPre.xlsx");strcat(fileName,"VecPost.xlsx")];
 for b = 1:2
     temp=zeros(size(ribbonData(b).grouped,2),4);
     for i = 1:size(ribbonData(b).grouped,2)

@@ -36,7 +36,7 @@ UNDER MORE SETTINGS
 "Save" saves the ribbon and nucleus data to a file.
 10. Look through the data to see if the computer did a good job. It can be done with the "Graph Slice: " entry, but it is easier if you use the "Check That Data!" entry on the "After Analysis" tab.
 It graphs the data in 3D, and allows you to scroll through it to go through slices. Rotate it with the built in tools to get a more intuitive sense of what it actually shows. NOTE:
-You cannot add, take away, or scroll while the rotate tool is on, so turn it off before those. Add a ribbon with double left click. Take away ribbons with a right click(This is a '
+You cannot add, take away, or scroll while the rotate tool is on, so turn it off before those. Add a ribbon with double left click. Take away ribbons with a right click(This is a 
 little buggy and you may have to rotate the view angle before it works).
 11. Look at the data using the "3D Graph" tab. The "Graph 3D" entry allows it to be done with xyz as pixels,pixels,slice respectively(using 'pixels'), or with xyz as microns(scaled).
 12. The "Background" entry is just a  3D representation that looks pretty cool and shows all the data together.

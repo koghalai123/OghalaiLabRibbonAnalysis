@@ -4,8 +4,8 @@ dataFile='IB04MiddleControlLeft1488CTBP2647PhalloidinDAPI_9_12_18.czi';
 %keep track of which channel is the nuclei, presynaptic ribbon,
 %postsynaptic density,etc
 nuclei=1;
-presynaptic=3;
-postsynaptic=2;
+presynaptic=2;
+postsynaptic=3;
 
 %load in data, find mins and maxes, and get the meta data for the file
 [voxel,dimensions,minMax,allData]=initialize(dataFile,1,2,3,4);

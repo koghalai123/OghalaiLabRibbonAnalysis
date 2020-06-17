@@ -1,5 +1,6 @@
 function removeRibbon(obj,event,app,g)
 if event.Button==3
+    layer=obj.ZData(1,1);
     if str2double(app.CheckThatDataDropDown.Value)==2
         points=app.presynapticPositions(event.IntersectionPoint(1,3)).points;
     elseif str2double(app.CheckThatDataDropDown.Value)==3
@@ -22,26 +23,21 @@ if event.Button==3
     app.Scat3D=gobjects();
     [app.presynapticPositions,app.postsynapticPositions]=ClusteredToSlice(app.ribbon,app.dimensions);
 
-    for slice=0:le-1
-        [Radii,Centers,~,~]=findStats(app,str2double(app.CheckThatDataDropDown.Value),slice+app.FirstSliceEditField.Value);
+    for slice=1:sum(isgraphics(g))
+        [Radii,Centers,~,~]=findStats(app,str2double(app.CheckThatDataDropDown.Value),slice);
 
         if size(Centers,1)>0
 
-            [app.Scat3D(slice+app.FirstSliceEditField.Value,1)]=graphCircles3D(p,Centers,Radii,slice,'r');
+            [app.Scat3D(slice,1)]=graphCircles3D(p,Centers,Radii,slice,'r');
         end
     end
     indices=find(isgraphics(app.Scat3D(:,1))==1);
     set(app.Scat3D(indices,1),'ButtonDownFcn',{@removeRibbon,app,g});
     
-    layer=size(findobj(g,'Visible',1),1)/2;
-    minimum=find(isgraphics(app.Scat3D),1);
     
-    if layer<minimum
-        layer=minimum;
-    end
-    maximum=size(isgraphics(app.Scat3D),1);
+    invis=indices(indices>layer);
 
-    set(app.Scat3D(layer+2:maximum,1),'Visible',0);
+    set(app.Scat3D(invis,1),'Visible',0);
     
     
 end
