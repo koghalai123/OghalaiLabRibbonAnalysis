@@ -17,6 +17,7 @@ if strcmpi(obj.SelectionType, 'open') % if it is a double-click event
         elseif high>size(g,2)
             high=size(g,2);
         end
+        %test
         t2=transpose([low:high]);
         temp=[ones(size(t2,1),1)*ax.CurrentPoint(1,1),ones(size(t2,1),1)*ax.CurrentPoint(1,2),t2,(en+1)*ones(size(t2,1),1)];
         app.ribbon(str2double(app.CheckThatDataDropDown.Value)-1).grouped(en+1).grouped=temp;
