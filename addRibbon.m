@@ -10,8 +10,8 @@ if strcmpi(obj.SelectionType, 'open') % if it is a double-click event
         en=size(app.ribbon(str2double(app.CheckThatDataDropDown.Value)-1).grouped,2);
         [ans1,ans2]=(arrayfun(@(s) size(s.grouped),app.ribbon(str2double(app.CheckThatDataDropDown.Value)-1).grouped));
         ans3=round(sum(ans1)/(2*en));
-        low=(on/2-ans3);
-        high=(on/2+ans3);
+        low=(on/2-ans3-1);
+        high=(on/2+ans3+1);
         if low <1
             low=1;
         elseif high>size(g,2)
