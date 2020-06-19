@@ -72,7 +72,7 @@ radius=[60,100];
 
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.
-        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points);
+        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points,voxel);
         if i==1
             discardedRPre=noFit;
         else

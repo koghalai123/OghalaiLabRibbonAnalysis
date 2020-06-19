@@ -1,7 +1,8 @@
-function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints)
+function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
     ribbonFinal=struct([]);
-    idx=dbscan([ribbonPoints(:,1)*.0495,ribbonPoints(:,2)*.0495,ribbonPoints(:,3)*.026],.2,3);
-    colors=hsv(max(idx));
+    %just group the ribbons 
+    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.2,3);
+    
     D=ribbonPoints;
     %figure;
     hold on;

@@ -14,7 +14,7 @@ function [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,ra
 
 isNucleus=true;
 
-
+%Threshold just one slice
 [allFiltered]=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum);
 
 startValue=1;
@@ -24,9 +24,11 @@ data2=data/max(data,[],'all');
 % sensitivity=.972;
 % range=[1200,1500];
 % radius=[50,90];
+
+%Find centers and radii
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered,range,sensitivity,stopValue,startValue,radius);
 
-
+%graph to the GUI
 [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data2,allFiltered,storeCenters,storeRadii);
 end
   

@@ -26,6 +26,8 @@ axis(UIAxes2,'equal');
 P3=imshow(allFiltered,'parent',UIAxes3);
 axis(UIAxes3,'equal');
 
+%If the nuclei and radii need to be graphed, then return their objects. If
+%not, return a non scatter object value.
 if size(storeCenters,1)>0
     [S1,S2]=graphCircles(UIAxes1,UIAxes3,storeCenters,storeRadii);
 else

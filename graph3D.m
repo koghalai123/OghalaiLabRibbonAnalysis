@@ -2,28 +2,27 @@ function [A,B,C,S1,S2]=graph3D(UIAxes,ribbon,discardedRPre,discardedRPost,newCen
 
 cla(UIAxes);
 
+%This is so that I can switch between pixel view and a scaled view in
+%microns
 if isScaled
     forScale=voxel;
     axis(UIAxes,'equal');
 elseif ~isScaled
     forScale=ones(1,3);
     axis(UIAxes,'normal');
-    
-    
-    
-    
-    
 end
 
 hold(UIAxes,'on');
 [x,y,z]=sphere;
 C=gobjects();
+%nuclei
 for i = 1:size(newCenters,1)
     C(i,1)=surf(UIAxes,forScale(1)*(mu(i)*x+newCenters(i,1))/voxel(1),forScale(2)*(mu(i)*y+newCenters(i,2))/voxel(1),forScale(3)*(mu(i)*z+newCenters(i,3))/voxel(3),'FaceColor','c');
 end
 color=["b","g"];
 A=gobjects();
 B=gobjects();
+%ribbona
 for b = 1:2
     for j = 1:size(ribbon(b).grouped,2)
         
@@ -37,6 +36,7 @@ for b = 1:2
         end
     end
 end
+%discarded ribbon points
 if size(discardedRPre,1)>0
     S1=scatter3(UIAxes,forScale(1)*discardedRPre(:,1),forScale(2)*discardedRPre(:,2),forScale(3)*discardedRPre(:,3),10,'r');
 end
@@ -45,6 +45,7 @@ if size(discardedRPost,1)>0
 end
 hold(UIAxes,'off');
 
+%legend and viewing angle
 view(UIAxes,3);
 legend(UIAxes,[A(1,1),B(1,1),C(1,1)],{'Presynaptic','Postsynaptic','Nuclei'});
 

@@ -1,7 +1,7 @@
 function [S1,S2,P1,P2,P3]=initialViewingRibbon(UIAxes1,UIAxes2,UIAxes3,data,medRange,threshold,epsilon,minGroup,range,radius,minimum,maximum)
 
 isNucleus=false;
-
+%threshold
 allFiltered=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum);
 
 startValue=1;
@@ -17,7 +17,7 @@ stopValue=0;
 % minGroup=5;
 
 data2=data/max(data,[],'all');
-
+%Print to gui
 [ribbons]=ribbonStuff(allFiltered,epsilon,minGroup,range,startValue,stopValue);
 if size(ribbons,1)>0
     [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data2,allFiltered,ribbons(:,1:2),radius);
