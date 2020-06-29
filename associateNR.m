@@ -1,5 +1,29 @@
-function [n,all]=associateNR(ribbon,newCenters,mu,voxel,UIAxes,ribbonRad)
+function [n,all]=associateNR(app,ribbon,newCenters,mu,voxel,UIAxes,ribbonRad)
+
+
+% [n,all]=associateNR(app,ribbon,newCenters,mu,voxel,UIAxes,ribbonRad)
+%   associate NR takes out nuclei and their associated ribbons based on an
+%   overlap in the x. this allows us to be more confident in our
+%   associations between nuclei and ribbons
+%   n is surf objects of the nuclei
+%   all is a structure of surf objects of the ribbons
+% 
+%   app is the GUI
+%   ribbon is a structure containing ribbons grouped by a clustering
+%   algorithm
+%   newCenters is the matrix of centers of the nuclei that I found
+%   mu is the matrix of radii of the nuclei that I found
+%   voxel is the dimensions of the voxel as a matrix
+%   UIAxes is that uiaxes that the associated nuclei and ribbons will be
+%   graphed on
+%   ribbonRad is the manual input ribbon size to allow the user to graph
+%   ribbons at the size they like
+
+
+
 mu2=mu;
+
+
 
 ribbonClusters=struct([]);
 ribbonClusters2=struct([]);
@@ -12,7 +36,6 @@ UIAxes.cla;
 hold(UIAxes,'on');
 [x,y,z]=sphere;
 n=gobjects;
-r=gobjects;
 
 
 for b =1:2
@@ -41,7 +64,7 @@ for b =1:2
     %This needs to be changed. It is removing the nuclei which are within
     %130 pixels of other nuclei. This only works for the first dataset I
     %used
-    A=single(distanceX<130) .* single(distanceX ~= 0);
+    A=single(distanceX<(6.4*app.voxel(1))) .* single(distanceX ~= 0);
     [row,col]=find(A==1);
     toDeleteUnique=unique([row;col]);
     %delete nuclei data

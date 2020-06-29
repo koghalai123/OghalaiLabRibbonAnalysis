@@ -1,4 +1,30 @@
 function [A,B,C,S1,S2]=graph3D(UIAxes,ribbon,discardedRPre,discardedRPost,newCenters,mu,voxel,isScaled,ribbonRad)
+% 
+% [A,B,C,S1,S2]=graph3D(UIAxes,ribbon,discardedRPre,discardedRPost,newCenters,mu,voxel,isScaled,ribbonRad)
+%
+%   graph3D takes in various data about the ribbons and nuclei and graphs
+%   them in 3D for humans to see
+%
+%   A is the surface objects of the presynaptic ribbons
+%   B is the surface objects of the postsynaptic densities
+%   C is the surface objects of the nuclei
+%   S1 is the scatter objects of the unused detected presynaptic ribbons
+%   S1 is the scatter objects of the unused detected postsynaptic densities
+%
+%   UIAxes is the uiaxes where this will be graphed
+%   ribbon is the structure containing the ribbons grouped by a clustering
+%   algorithm
+%   discardedRPre is the structure containing the ribbon detections that
+%   were clusterd out
+%   discardedRPost is the structure containing the density detections that
+%   were clusterd out
+%   newCenters is a matrix containing the centers of the nuclei
+%   mu is a matrix containing the radii of the nuclei
+%   voxel is a matrix containing the voxel dimensions
+%   isScaled allows the graphing to be done in either a to-scale 3D plot,
+%   or a plot based on the pixels and slices.
+%   ribbonRad is the user input of the ribbon sizes
+% 
 
 cla(UIAxes);
 

@@ -1,5 +1,14 @@
 function addToScatter(app,S,g,layer)
 
+% addToScatter(app,S,g,layer)
+%     add to scatter adds the ribbon to the 3Dstack of hgtransforms by 
+%     deleting all the scatter objects, adding the ribbon and replotting it.
+% 
+%     app is the GUi
+%     S is not currently being used
+%     g is the 3D stack of hgtransforms
+%     layer is the highest visible layer in the stack
+
 %Delete all the scatter objects
 delete(app.Scat3D);
 %Make a new object to hold the scatter objects

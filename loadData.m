@@ -20,20 +20,38 @@ medRangeArray=[6,6;5,5;6,6;8,8];
 plainData=allData;
 
 %preallocate space for the filtered data based on metadata
-allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
+allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),4,'logical');
 
 
 %For the following fuinction to filter data
 isNucleus=[true,false,false,false];
+yRange=zeros(4,2);
+
+
+startValue=50;
+stopValue=6;
+rStart=1;
+rStop=1;
+
+yRange(nuclei,:)=[1200,1500];
+yRange(presynaptic)=[1200,1700];
+yRange(postsynaptic)=[1200,1700];
+startValues=zeros(4,2);
+startValues(nuclei,:)=[startValue,stopValue];
+startValues(presynaptic,:)=[rStart,rStop];
+startValues(postsynaptic,:)=[rStart,rStop];
+
+
+
 
 %filter data by channel
 for b =1:4
-    [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRangeArray(b,:),allData(:,:,:,b),isNucleus(b));
-end
+    parfor i =1:size(allData,3)
+        [allFiltered(:,:,i,b)]=initialThreshold(threshold(b),medRangeArray(b,:),allData(:,:,i,b),isNucleus(b),minMax(b,1),minMax(b,2),yRange(b,1),yRange(b,1),startValues(b,1),startValues(b,2));
 
+    end
+end
 %set limits on which slices we want to look at
-startValue=50;
-stopValue=6;
 
 %set sensitivity for circle detection of nuclei
 sensitivity=.972;
@@ -44,7 +62,7 @@ radius=[60,100];
 
 %finds circles on each slice for hte nucleus channel using the filtered
 %data
- [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),range,sensitivity,stopValue,startValue,radius);
+ [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),range,sensitivity,stopValue,startValue,radius,range(1),range(2));
 
  %clusters them together and outputs the final nucleus centers and radii
   [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
@@ -68,7 +86,7 @@ radius=[60,100];
     %for all slices using the filtered data
     for i = 1:2
         %Find all ribbon locations on each slice
-        [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,range,startValue,stopValue);
+        [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,range,rStart,rStop);
 
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.

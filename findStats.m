@@ -1,5 +1,23 @@
 function [Radii,Centers,DCircles,DRadii] = findStats(app,type,slice)
-
+% 
+% [Radii,Centers,DCircles,DRadii] = findStats(app,type,slice)
+%
+%   Radii is a matrix containing the radii of a circle cast by a nucleus on a particular
+%   slice, based on its center and radius(or the ribbon positions,
+%   depending on whether the user was looking fornuclei of ribbons)
+%   Centers is a matrix containing the centers of the organ cast onto this
+%   slice
+%   DCircles are the discarded instances of this organ. It allows for the
+%   user to check whether an organ is being detected or being clusterd out
+%   of the data due to bad settings
+%   DRadii contains the radii instead of the centers
+% 
+%   app is the GUI
+%   type is the type of organ
+%   slice is what slice the user wants the data for.
+%
+%
+%
     if type==1 %check if we are finding data for nucleus or ribbons
         Centers=[];
         Radii=[];

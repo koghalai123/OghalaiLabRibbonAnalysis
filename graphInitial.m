@@ -1,4 +1,27 @@
 function [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data,allFiltered,storeCenters,storeRadii)
+% 
+% [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data,allFiltered,storeCenters,storeRadii)
+%
+%   graphInitial graphs the data on UIAxes to make it easy for the user to
+%   find good input settings for organ detection and noise reduction
+%
+%   S1 is the scatter objects for the presynaptic data
+%   S2 is the scatter objects for the postsynaptic data
+%   P1 is the image object for the data
+%   P2 is the image object for the filtered data
+%   P3 is the image object for the filtered data
+% 
+%   UIAxes1-3 are the uiaxes that the detected organs and data is being
+%   graphed on
+%   data is the original data(matrix)
+%   allFiltered is the filtered data(matrix)
+%   storeCenters is a matrix storing the detected organs
+%   storeRadii is a matrix storing the detected organs' radii
+% 
+% 
+% 
+% 
+
 UIAxes1.cla;
 UIAxes2.cla;
 UIAxes3.cla;

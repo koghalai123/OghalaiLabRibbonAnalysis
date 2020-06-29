@@ -1,4 +1,26 @@
 function [g]=graphFinal3D(axes,allData,startValue,stopValue,isTrans,app)
+% 
+% [g]=graphFinal3D(axes,allData,startValue,stopValue,isTrans,app)
+%
+%   graphFinal3D creates a 3D image stack of hgtransforms for user viewing
+%   of the data in 3D. Later, the nuclei and ribbons are added for double
+%   checking the program.
+%
+%   g is the graphics objects hgtransform 3D image stack
+% 
+%   axes is the axes that the hgtransforms will be plotted on
+%   allData is the contrast adjusted data that will be plotted on each
+%   slice of the hgtransform
+%   startValue is no longer being used
+%   stopValue is no longer being used
+%   isTrans allows for the hgtransform data to be plotted as slightly
+%   transparent
+%   app is the GUI object
+% 
+% 
+% 
+% 
+% 
 
 alpha=["none","scaled"];
 

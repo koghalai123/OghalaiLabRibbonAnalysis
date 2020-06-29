@@ -1,4 +1,18 @@
 function []=getThatScroll(obj,event,g,app)
+% 
+% []=getThatScroll(obj,event,g,app)
+%
+%   getThatScroll is a callback function that allows the user to scroll
+%   between different slices of the 3D stack of hgtransforms
+%    
+%   obj is the figure
+%   event is the scroll event
+%   g is the 3D stack of hgtransforms
+%   app is the GUI
+% 
+% 
+% 
+
 %Find how many slices are visible
 on=findobj(g,'Visible',1);
 off=findobj(g,'Visible',0);

@@ -1,4 +1,17 @@
 function addRibbon(obj,event,g,app)
+
+% addRibbon(obj,event,g,app)
+%
+%     addRibbon is a callback function that takes in a 3D stack of
+%     hgtransforms, as well as scatter objects for each Z height. It will
+%     add a ribbon to app.ribbons.grouped and replot the scatter objects.
+%   
+%   obj is the figure window
+%   event is the ButtonDownFcn callback
+%   g is the stack of hgtransforms
+%   app is the GUI
+
+
 ax=obj.CurrentAxes;
 
 % Determines if the user clicked on the UIAxes

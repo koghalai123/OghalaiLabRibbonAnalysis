@@ -1,7 +1,25 @@
 function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
+% 
+% [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
+%
+%   ribbonAnalysis takes the places on each slice where intense groups were
+%   detected and clusters them together with a density based spatial
+%   clustering algorithm
+%
+%   ribbonFinal is the structure containing the points, as well as the
+%   points clusters by group
+%   noFit is a structure containing the points that did not get clusters
+%   into groups. This is assumed to be noise, but will be graphed later on
+%   so that the user can be sure.
+% 
+%   ribbonPoints is a structure containing all the points on each slice
+%   where intense points were detected
+%   voxel is a matrix containign the voxel data
+%
+
     ribbonFinal=struct([]);
     %just group the ribbons 
-    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.2,3);
+    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.17,3);
     
     D=ribbonPoints;
     %figure;

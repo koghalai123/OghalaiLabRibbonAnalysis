@@ -1,4 +1,16 @@
 function removeRibbon(obj,event,app,g)
+% 
+% removeRibbon(obj,event,app,g)
+%
+%   removeRibbon allows the user to click on a scatter object on a
+%   particular slice and remove it from the data.
+%
+%   obj is the scatter object that was clicked on
+%   event is the click event
+%   app is the GUI object
+%   g is the 3D stack of hgtransforms
+% 
+
 %chec for right click
 if event.Button==3
     
