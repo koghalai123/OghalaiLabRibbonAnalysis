@@ -1,6 +1,6 @@
-function [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,radius,sensitivity,UIAxes1,UIAxes2,UIAxes3,minimum,maximum,yMin,yMax)
+function [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,radius,sensitivity,UIAxes1,UIAxes2,UIAxes3,minimum,maximum,xMin,xMax)
 % 
-% [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,radius,sensitivity,UIAxes1,UIAxes2,UIAxes3,minimum,maximum,yMin,yMax)
+% [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,radius,sensitivity,UIAxes1,UIAxes2,UIAxes3,minimum,maximum,xMin,xMax)
 %
 %   intialViewingNucleus takes in user input data and uses it to show a
 %   preliminary viewing of the data and detected organs
@@ -20,8 +20,8 @@ function [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,ra
 %   UIAxes1-3 are the UIAxes that the stuff is graphed on
 %   minimum is the globalMin for the nucleus channel
 %   maximum is the globalMax for the nucleus channel
-%   yMin is the minimum y that the user is interested in
-%   yMax is the maximum y that the user is interested in
+%   xMin is the minimum x that the user is interested in
+%   xMax is the maximum x that the user is interested in
 %
 % 
 
@@ -39,11 +39,12 @@ function [S1,S2,P1,P2,P3]=initialViewingNucleus(data,threshold,medRange,range,ra
 
 isNucleus=true;
 
-%Threshold just one slice
-[allFiltered]=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum,yMin,yMax);
-
 startValue=1;
 stopValue=0;
+%Threshold just one slice
+[allFiltered]=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum,range(1),range(2),startValue,stopValue);
+
+
 
 data2=data/max(data,[],'all');
 % sensitivity=.972;
@@ -55,6 +56,7 @@ data2=data/max(data,[],'all');
 
 %graph to the GUI
 [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data2,allFiltered,storeCenters,storeRadii);
+graphLine(UIAxes1,range,size(data,2));
 end
   
 

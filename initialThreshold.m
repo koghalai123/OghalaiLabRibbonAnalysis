@@ -1,7 +1,7 @@
 
-function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globalMin,globalMax,yMin,yMax,startValue,stopValue)
+function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globalMin,globalMax,xMin,xMax,startValue,stopValue)
 % 
-% [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globalMin,globalMax,yMin,yMax)
+% [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globalMin,globalMax,xMin,xMax)
 %
 %   intialThreshold thresholds the data and does some image enhancement. 
 % 
@@ -15,23 +15,23 @@ function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globa
 %   scaling is correct
 %   globalMax is the global max for this channel. Used to make sure the
 %   scaling is correct
-%   yMin is the minimum y value that the user is interested in looking at
-%   yMax is the maximum y value that the user is interested in looking at
+%   xMin is the minimum y value that the user is interested in looking at
+%   xMax is the maximum y value that the user is interested in looking at
 % 
 % 
 % 
 % 
 % 
 
-    if ~exist(yMin,1)
-        yMin=1;
-        yMax=size(data,2);
+    if ~exist('xMin','var')
+        xMin=1;
+        xMax=size(data,2);
     end
     %preallocation
     filteredData=zeros(size(data,1),size(data,2),size(data,3),'logical');
     %Adjust for global mins and maxes
     difference=globalMax-globalMin;
-    noThreshold=(double(data(:,yMin:yMax,:)-globalMin)/(difference));
+    noThreshold=(single(data(xMin:xMax,:,:)-globalMin)/(difference));
     %Check for the channel before proceeding
     if isNucleus==false
         % if it is a ribbon, then use a sobel transform, median filter, and
@@ -42,7 +42,7 @@ function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globa
                 F=medfilt2(f,medRange);
                 %threshold=prctile(F(:),[percentile],'all');
                 G=F>threshold;
-                filteredData(:,yMin:yMax,i)=G;%medfilt2(G,medRange);
+                filteredData(xMin:xMax,:,i)=G;%medfilt2(G,medRange);
         end
         
     else
@@ -50,10 +50,10 @@ function [filteredData]=initialThreshold(threshold,medRange,data,isNucleus,globa
         %time
         %%%FIGURE OUT HOW TO DO A 3D MEDIAN FILTER. THIS MAY BE HELPFUL
         %threshold=prctile(noThreshold(:),[percentile],'all');
-        almostFilteredData()=noThreshold>threshold;
+        almostFilteredData(xMin:xMax,:,:)=noThreshold>threshold;
         for i = 1:size(data,3)
             
-            filteredData(:,yMin:yMax,i)=medfilt2(almostFilteredData(:,:,i),medRange);
+            filteredData(xMin:xMax,:,i)=medfilt2(almostFilteredData(xMin:xMax,:,i),medRange);
         end
     end
 end

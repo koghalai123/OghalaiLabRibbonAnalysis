@@ -1,5 +1,5 @@
 
-dataFile='IB04MiddleControlLeft1488CTBP2647PhalloidinDAPI_9_12_18.czi';
+dataFile='6.czi';
 
 %keep track of which channel is the nuclei, presynaptic ribbon,
 %postsynaptic density,etc

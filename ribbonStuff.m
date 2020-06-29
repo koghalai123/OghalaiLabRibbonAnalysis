@@ -1,6 +1,6 @@
-function [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stopValue,yMin,yMax)
+function [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stopValue)
 % 
-% [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stopValue,yMin,yMax)
+% [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stopValue,xMin,xMax)
 %
 %   ribbonStuff goes through each slice and looks for places where a ribbon
 %   might be based on their intensity and size.
@@ -15,13 +15,14 @@ function [ribbons]=ribbonStuff(scaledData,epsilon,minGroup,range,startValue,stop
 %   range is the range in which ribbons are being looked for
 %   startValue is the lowest slice that the user is interested in
 %   stopValue is the highest slice that the user is interested in
-%   yMin is the minimum Y that the user is interested in
-%   yMax is the maximum Y that the user is interested in 
+%   xMin is the minimum Y that the user is interested in
+%   xMax is the maximum Y that the user is interested in 
 % 
-
+xMin=range(1);
+xMax=range(2);
 for j = startValue:size(scaledData,3)-stopValue
         %find points in the data
-        [col,row]=find(scaledData(:,yMin:yMax,j)==1);
+        [col,row]=find(scaledData(xMin:xMax,:,j)==1);
         %do a density based cluster on the points in the data to find where
         %the ribbons are on this slice
         if size(row,1)>0
@@ -43,7 +44,7 @@ for j = startValue:size(scaledData,3)-stopValue
 
             
 %             %Add centers and radius to structure for storage 
-            storeCenters2(j).centers=[centers(:,1),centers(:,2)+yMin,ones(size(centers,1),1)*j];
+            storeCenters2(j).centers=[centers(:,1),centers(:,2)+xMin,ones(size(centers,1),1)*j];
         end
 end
 if exist('storeCenters2', 'var')

@@ -1,6 +1,6 @@
-function [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitivity,stopValue,startValue,radius,yMin,yMax)
+function [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitivity,stopValue,startValue,radius)
 % 
-% [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitivity,stopValue,startValue,radius,yMin,yMax)
+% [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitivity,stopValue,startValue,radius,xMin,xMax)
 %
 %   viewPreliminaryData goes through slices of the nuclei data and looks
 %   for circles.
@@ -16,22 +16,23 @@ function [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitiv
 %   start Value is the first slice that the user is interested in
 %   radius is a matrix containing a pixel estimate for how big the nuclei
 %   are
-%   yMin is the minimum y value that the user is interested in
-%   yMax is the maximum y value that the user is interested in
+%   xMin is the minimum y value that the user is interested in
+%   xMax is the maximum y value that the user is interested in
 % 
 % 
 % 
 
 %sensitivty 9.883, range=[1200,1500], stopValue=88, nucleiSlice=0 THIS IS ONLY FOR THE
 %TESTDATA
-
+    xMin=range(1);
+    xMax=range(2);
 
     storeCenters=[];
     storeRadii=[];
     %Go through each slice in the nuclei channel
     for j = startValue:size(nucleiData,3)-stopValue
         %find circles
-        [centers, radii] = imfindcircles(nucleiData(:,yMin:yMax,j),radius,'Sensitivity',sensitivity);
+        [centers, radii] = imfindcircles(nucleiData(xMin:xMax,:,j),radius,'Sensitivity',sensitivity);
         
        %determine if the nuclei centers are within acceptable Y range and
        %remove those which are not
@@ -43,8 +44,8 @@ function [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitiv
 %         end
        
         %Store the data.
-        if size(centers2,1)>0
-            storeCenters=[storeCenters;centers(:,1),centers(:,2)+yMin,ones(size(centers,1),1)*j];
+        if size(centers,1)>0
+            storeCenters=[storeCenters;centers(:,1),centers(:,2)+xMin,ones(size(centers,1),1)*j];
             storeRadii=[storeRadii;radii];
         end
     end
