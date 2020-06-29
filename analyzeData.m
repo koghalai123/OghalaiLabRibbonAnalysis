@@ -40,7 +40,7 @@ function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,di
 % plainData=allData;
 
 %filter data by channel
-
+tic;
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
@@ -94,7 +94,7 @@ ribbon=removePreCloseRib(newCenters,ribbon,voxel);
 [sendPre,sendPost]=ClusteredToSlice(ribbon,dimensions);
     
     
-    
+    toc;
     
 %     toGraph=struct([]);
 %     for i = 1:size(ribbon.a,1)

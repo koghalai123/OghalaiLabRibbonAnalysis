@@ -28,7 +28,7 @@ function [S1,S2,P1,P2,P3]=initialViewingRibbon(UIAxes1,UIAxes2,UIAxes3,data,medR
 
 isNucleus=false;
 %threshold
-allFiltered=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum);
+allFiltered=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum,range(1),range(2),1,0);
 
 startValue=1;
 stopValue=0;
@@ -45,4 +45,6 @@ if size(ribbons,1)>0
 else
     [S1,S2,P1,P2,P3]=graphInitial(UIAxes1,UIAxes2,UIAxes3,data/max(data,[],'all'),allFiltered,[],radius);
 end
+graphLine(UIAxes1,range,size(data,2));
+
 end
