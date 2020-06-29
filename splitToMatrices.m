@@ -1,4 +1,18 @@
 function [allData] = splitToMatrices(data,nuclei,presynaptic,postsynaptic,extra)
+% 
+% [allData] = splitToMatrices(data,nuclei,presynaptic,postsynaptic,extra)
+%
+%   splitToMatrices takes the data, which is originally stored as a single
+%   cell array and converts it into a single 4D array for better
+%   readibility and accessibility
+% 
+%   allData is a 4D matrix containing the data from the actual data file.
+%   The format is (x,y,z,channel)
+%   nuclei is the nuclei channel
+%   presynaptic is the presynaptic channel
+%   postsynaptic is the postsynaptic channel
+%   extra is the last channel
+%
 
 
 offset=[nuclei,presynaptic,postsynaptic,extra];

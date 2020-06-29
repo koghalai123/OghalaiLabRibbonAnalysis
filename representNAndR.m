@@ -1,4 +1,20 @@
 function [R1,R2]=representNAndR(NAssociated,RAssociated,UIAxes)
+% 
+% [R1,R2]=representNAndR(NAssociated,RAssociated,UIAxes)
+%
+%   representNAndR graphs the nuclei and ribbons that are associated with
+%   each other on top of each other. This may help us see trends in 3D in
+%   response to blasts
+% 
+%   R1 is the presynaptic ribbons as scatter objects
+%   R2 is the presynaptic ribbons as scatter objects
+%
+%   NAssociated is the matrix of nuclei that are associated with ribbons
+%   and do not overlap in the Y
+%   RAssociated is a structure of ribbons that are associated with nuclei
+%   that do not overlap with other nuclei
+%
+
 allVec=struct([]);
 
 N=scatter3(UIAxes,0,0,0,'Marker','.','CData',[0,0,0],'SizeData',5000);

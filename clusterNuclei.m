@@ -1,4 +1,21 @@
 function [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel)
+% 
+% [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel)
+%
+%   newCenters is the center of the nuclei found by a spherefit algorithm
+%   mu is the radii of the nuclei found by a spherefit algorithm
+%   discardedN are the circles found by the program that were not used in
+%   the fit due to being clusters out
+% 
+%   storeCenters is a structure containing the circles detected on each
+%   slice
+%   storeRadii is a structure containing the radii of the circles detected
+%   on each slice
+%   voxel is a matrix with the voxel data
+% 
+% 
+% 
+
 %     [b,idx2,outliers]=deleteoutliers([storeCenters(:,1),storeCenters(:,2)*1.5],.15);
 
 %Density based clustering

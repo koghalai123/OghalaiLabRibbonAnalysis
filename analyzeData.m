@@ -1,5 +1,29 @@
 function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost,ribbon]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
 
+% [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost,ribbon]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
+%   analyzeData goes through all the layers and looks for nuclei and
+%   ribbons. The inputs are just the inputs from the GUI
+% 
+% 
+%   allFiltered is the enhanced data
+%   newCenters is the centers of the nuclei that were found
+%   mu is the radii of the nuclei that were found
+%   sendPre is a structure containing all the ribbon locations grouped by
+%   slice
+%   sendPost is a structure containing all the densities locations grouped by
+%   slice
+%   discardedN is a matrix containing the circle locations were nuclei were
+%   detected through an algorithm, but were classified as noise
+%   discardedRPre is the places where ribbons were detected but were
+%   classified as noise by a clustering algorithm
+%   discardedRPost is the places where densities were detected but were
+%   classified as noise by a clustering algorithm
+%   ribbon is a structure containing ribbon and density locations that are
+%   grouped by a clustering algorithm in order to find the number of
+%   ribbons
+
+
+
 %%%%THIS IS JUST THE FUNCTION FORM OF LOADDATA. IT IS USED IN THE GUI FOR
 %%%%DOING EVERYTHING IN LOAD DATA.
 
@@ -54,7 +78,7 @@ end
 
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.
-        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points);
+        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points,voxel);
         if i==1
             discardedRPre=noFit;
         else

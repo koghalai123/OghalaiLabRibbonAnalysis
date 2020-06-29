@@ -1,4 +1,22 @@
 function [voxel,dimensions,minMax,allData]=initialize(dataFile,nuclei,presynaptic,postsynaptic,extra)
+% 
+% [voxel,dimensions,minMax,allData]=initialize(dataFile,nuclei,presynaptic,postsynaptic,extra)
+%
+%   initialize loads in the data, finds some metadata and also finds the
+%   min and max
+% 
+%   voxel is a matrix containing voxel data
+%   dimensions is a matrix containing the dimensions of the data
+%   minMax is a matrix storing the mins and maxes for each channel
+%   allData is all of the data in the given data file
+% 
+%   dataFile is the name of the data file
+%   nuclei is the channel for the nuclei
+%   presynaptic is the channel for the presynaptic ribbons
+%   postsynaptic is the channel for the postsynaptic densities
+%   extra is the last channel
+% 
+% 
 
 %open datafile
 data=bfopen(dataFile);
