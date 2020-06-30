@@ -41,14 +41,14 @@ function [Radii,Centers,DCircles,DRadii] = findStats(app,type,slice)
         %locations on this particular slice.
         A=app.discardedRPre(:,3)==slice;
         Centers=app.presynapticPositions(slice).points;
-        Radii=str2double(app.RibbonRadiusEditField.Value);
+        Radii=str2double(app.RRadEditField.Value);
         DCircles=app.discardedRPre(A,:);
-        DRadii=app.RibbonRadiusEditField;
+        DRadii=app.RRadEditField.Value;
     elseif type==3
         A=app.discardedRPost(:,3)==slice;
         Centers=app.postsynapticPositions(slice).points;
-        Radii=str2double(app.RibbonRadiusEditField.Value);
+        Radii=str2double(app.RRadEditField.Value);
         DCircles=app.discardedRPost(A,:);
-        DRadii=app.RibbonRadiusEditField;
+        DRadii=app.RRadEditField.Value;
     end
 end

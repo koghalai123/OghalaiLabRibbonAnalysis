@@ -1,4 +1,4 @@
-function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost,ribbon]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
+function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost,ribbon]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData,RFirst,RLast)
 
 % [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,discardedRPost,ribbon]=analyzeData(nuclei,presynaptic,postsynaptic,threshold,medRange,startValue,stopValue,sensitivity,rangeN,rangeR,radius,epsilon,minGroup,voxel,dimensions,allData)
 %   analyzeData goes through all the layers and looks for nuclei and
@@ -38,14 +38,20 @@ function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,di
 % medRange=[8,8;3,3;3,3;4,4];
 
 % plainData=allData;
+rangeAll=ones(4,2);
+rangeAll(nuclei,:)=rangeN;
+rangeAll(presynaptic,:)=rangeR;
+rangeAll(postsynaptic,:)=rangeR;
+rangeAll(:,2)=rangeAll(:,2)+1;
 
 %filter data by channel
 tic;
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
-    [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRange(b,:),allData(:,:,:,b),b==nuclei);
+    [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRange(b,:),allData(:,:,:,b),b==nuclei,rangeAll(b,:));
 end
+toc
 % startValue=1;
 % stopValue=20;
 
@@ -56,11 +62,11 @@ end
 %finds circles on each slice for hte nucleus channel using the filtered
 %data
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),rangeN,sensitivity,stopValue,startValue,radius);
-
+toc
  %clusters them together and outputs the final nucleus centers and radii
   [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
 
-  
+  toc
 
 %      rangeR=[1000,2048];
     ribbonSlices=[presynaptic,postsynaptic];
@@ -74,7 +80,7 @@ end
     %for all slices using the filtered data
     for i = 1:2
         %Find all ribbon locations on each slice
-        [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,startValue,stopValue);
+        [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,RFirst,RLast);
 
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.
@@ -85,11 +91,11 @@ end
             discardedRPost=noFit;
         end
     end
-
+toc
 ribbon=removePreCloseRib(newCenters,ribbon,voxel);
 %Ignore this part. It is just used to save time when I am experimenting
 %with the GUI
-    
+    toc
     
 [sendPre,sendPost]=ClusteredToSlice(ribbon,dimensions);
     
