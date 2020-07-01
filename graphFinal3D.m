@@ -54,5 +54,6 @@ colormap('gray');
 axes.XLim=[0,size(allData2,1)];
 axes.YLim=[0,size(allData2,2)];
 axes.ZLim=[0,size(allData2,3)];
+
 end
 %set(g(:).Parent.Parent,'Parent',a);

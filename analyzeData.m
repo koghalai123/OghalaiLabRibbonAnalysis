@@ -36,7 +36,7 @@ function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,di
 
 %  threshold=[.1,.08,.08,.05];
 % medRange=[8,8;3,3;3,3;4,4];
-
+tic
 % plainData=allData;
 rangeAll=ones(4,2);
 rangeAll(nuclei,:)=rangeN;
@@ -45,8 +45,9 @@ rangeAll(postsynaptic,:)=rangeR;
 rangeAll(:,2)=rangeAll(:,2)+1;
 
 %filter data by channel
-tic;
+
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
+toc
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
     [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRange(b,:),allData(:,:,:,b),b==nuclei,rangeAll(b,:));
@@ -74,7 +75,7 @@ toc
 %     minGroup=5;
     ribbon=struct([]);
     noFit=struct([]);
-    
+    toc
     
     %go through the presynaptic ribbon and postsynaptic density channels
     %for all slices using the filtered data

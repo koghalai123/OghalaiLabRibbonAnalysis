@@ -1,4 +1,26 @@
 function [filteredData]=inputAndThreshold(threshold,medRange,data,isNucleus,range)
+% 
+% [filteredData]=inputAndThreshold(threshold,medRange,data,isNucleus,range)
+%
+% inputANdThreshold will take the input data and threshold it and do image
+% enehancement to allow the computer to better recognize synapses and
+% nuclei. 
+% 
+% filtered Data is a 3D matrix and is the result of this function and is a logical array
+% containing thresholded and image enhanced data
+% 
+% threshold is a double containing the minimum intensity to be kept in the
+% data
+% medRange is the median range used for removing noise from the data
+% data is the 3D matrix of input data
+% isNucleus is whether this channel of the data contains nuclei. If not, a
+% different type of enhancement is done
+% range is the x range in which we are looking for stuff. The rest of the
+% data is assumed to be logical zeros in order to speed up computing
+% 
+% 
+% 
+
     %preallocation
     filteredData=zeros(size(data,1),size(data,2),size(data,3),'logical');
     
@@ -16,7 +38,7 @@ function [filteredData]=inputAndThreshold(threshold,medRange,data,isNucleus,rang
     %slice
     %If ~isNucleus, it is more complicated
     if isNucleus==false
-        tic
+        
         for i = 1:size(data,3)
             %edge enhancement
                 h=fspecial('sobel');
@@ -28,15 +50,15 @@ function [filteredData]=inputAndThreshold(threshold,medRange,data,isNucleus,rang
                 %another median filter
                 %filteredData(:,:,i)=gpuArray.medfilt2(G,medRange);
         end
-        toc
+        
     else
-        tic
+        
         almostFilteredData=noThreshold>threshold;
         for i = 1:size(data,3)
             
             filteredData(range(1):range(2),:,i)=medfilt2(almostFilteredData(:,:,i),medRange);
         end
-        toc
+        
     end
     
 end
