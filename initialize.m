@@ -18,6 +18,12 @@ function [voxel,dimensions,minMax,allData]=initialize(dataFile,nuclei,presynapti
 % 
 % 
 
+%add bfmatlab and spherefit to path
+
+bfPath=genpath('bfmatlab');
+SFPath=genpath('sphereFit');
+addpath(bfPath);
+addpath(SFPath);
 %open datafile
 data=bfopen(dataFile);
 

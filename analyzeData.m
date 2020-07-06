@@ -36,7 +36,7 @@ function [allFiltered,newCenters,mu,sendPre,sendPost,discardedN,discardedRPre,di
 
 %  threshold=[.1,.08,.08,.05];
 % medRange=[8,8;3,3;3,3;4,4];
-tic
+
 % plainData=allData;
 rangeAll=ones(4,2);
 rangeAll(nuclei,:)=rangeN;
@@ -47,12 +47,12 @@ rangeAll(:,2)=rangeAll(:,2)+1;
 %filter data by channel
 
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
-toc
+
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
     [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRange(b,:),allData(:,:,:,b),b==nuclei,rangeAll(b,:));
 end
-toc
+
 % startValue=1;
 % stopValue=20;
 
@@ -63,11 +63,11 @@ toc
 %finds circles on each slice for hte nucleus channel using the filtered
 %data
  [storeCenters,storeRadii]=viewPreliminaryData(allFiltered(:,:,:,nuclei),rangeN,sensitivity,stopValue,startValue,radius);
-toc
+
  %clusters them together and outputs the final nucleus centers and radii
   [newCenters,mu,discardedN]=clusterNuclei(storeCenters,storeRadii,voxel);
 
-  toc
+  
 
 %      rangeR=[1000,2048];
     ribbonSlices=[presynaptic,postsynaptic];
@@ -75,7 +75,7 @@ toc
 %     minGroup=5;
     ribbon=struct([]);
     noFit=struct([]);
-    toc
+    
     
     %go through the presynaptic ribbon and postsynaptic density channels
     %for all slices using the filtered data
@@ -92,16 +92,16 @@ toc
             discardedRPost=noFit;
         end
     end
-toc
+
 ribbon=removePreCloseRib(newCenters,ribbon,voxel);
 %Ignore this part. It is just used to save time when I am experimenting
 %with the GUI
-    toc
+    
     
 [sendPre,sendPost]=ClusteredToSlice(ribbon,dimensions);
     
     
-    toc;
+    
     
 %     toGraph=struct([]);
 %     for i = 1:size(ribbon.a,1)
