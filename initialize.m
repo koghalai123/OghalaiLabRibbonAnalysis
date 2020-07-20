@@ -22,8 +22,10 @@ function [voxel,dimensions,minMax,allData]=initialize(dataFile,nuclei,presynapti
 
 bfPath=genpath('bfmatlab');
 SFPath=genpath('sphereFit');
+VOXPath=genpath('Mesh_Voxelisation');
 addpath(bfPath);
 addpath(SFPath);
+addpath(VOXPath);
 %open datafile
 data=bfopen(dataFile);
 
