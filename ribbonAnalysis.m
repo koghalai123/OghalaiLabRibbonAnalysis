@@ -19,11 +19,11 @@ function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
 
     ribbonFinal=struct([]);
     %just group the ribbons 
-    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.17,3);
+    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.17,2);
     
     D=ribbonPoints;
     %figure;
-    hold on;
+%     hold on;
     for i = 1:max(idx)+1
         if i <=max(idx)
             D(idx==i,4)=i;
