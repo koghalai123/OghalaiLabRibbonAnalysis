@@ -1,4 +1,4 @@
-function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
+function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel,groupSize)
 % 
 % [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
 %
@@ -16,10 +16,10 @@ function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
 %   where intense points were detected
 %   voxel is a matrix containign the voxel data
 %
-
+    noFit=[];
     ribbonFinal=struct([]);
     %just group the ribbons 
-    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.17,2);
+    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.19,groupSize);
     
     D=ribbonPoints;
     %figure;
@@ -36,11 +36,14 @@ function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel)
         if j>=1
             points=D(j==D(:,4),:);
             %scatter3(points(:,1),points(:,2),points(:,3),5,colors(j,:));
+            
             ribbonFinal(j).grouped=points;
         elseif j==0
             points=D(0==D(:,4),:);
             %scatter3(points(:,1),points(:,2),points(:,3),5,[0,0,0]);
-            noFit=points(:,1:3);
+            if size(points,1)>0
+                noFit=points(:,1:3);
+            end
         end
     end
 end

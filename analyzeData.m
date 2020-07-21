@@ -44,13 +44,15 @@ rangeAll(presynaptic,:)=rangeR;
 rangeAll(postsynaptic,:)=rangeR;
 rangeAll(:,2)=rangeAll(:,2)+1;
 
+sortOrg=[nuclei,presynaptic,postsynaptic,4];
+threshold=[threshold,1];
 %filter data by channel
 
 allFiltered=zeros(dimensions(1),dimensions(2),dimensions(3),'logical');
 
 % medRange=[8,8;7,7;7,7;8,8];
 for b =1:4
-    [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(b),medRange(b,:),allData(:,:,:,b),b==nuclei,rangeAll(b,:));
+    [allFiltered(:,:,:,b)]=inputAndThreshold(threshold(sortOrg(b)),medRange(b,:),allData(:,:,:,b),b==nuclei,rangeAll(b,:));
 end
 
 % startValue=1;
@@ -79,13 +81,14 @@ end
     
     %go through the presynaptic ribbon and postsynaptic density channels
     %for all slices using the filtered data
+    groupSize=[2,3];
     for i = 1:2
         %Find all ribbon locations on each slice
         [ribbon(i).points]=ribbonStuff(allFiltered(:,:,:,ribbonSlices(i)),epsilon,minGroup,rangeR,RFirst,RLast);
 
         %Group the ribbon locations together to create a 3D ribbon location
         %array. This part does nto work very well yet.
-        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points,voxel);
+        [ribbon(i).grouped,noFit]=ribbonAnalysis(ribbon(i).points,voxel,groupSize(i));
         if i==1
             discardedRPre=noFit;
         else
