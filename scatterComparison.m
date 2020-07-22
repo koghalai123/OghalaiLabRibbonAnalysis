@@ -1,5 +1,5 @@
 
-num = 'What dataset do you want to look at?'; 
+num = 'What dataset do you want to look at? '; 
 dataset = input(num,'s');
 
 %You may need to change suffixes to match to your own data set name
@@ -40,3 +40,10 @@ kRib=scatter3(a,kx,ky,kz,'Marker','o');
 iRib=scatter3(a,ix,iy,iz,'Marker','o');
 hold(a,'off');
 view(a,3);
+
+
+[k,dist]=dsearchn([kx,ky,kz],[ix,iy,iz]);
+noOut=rmoutliers(dist,'Percentile',[0,93]);
+medData=median(noOut);
+
+
