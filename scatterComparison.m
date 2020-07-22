@@ -33,6 +33,7 @@ ix=InumPre(:,1);
 iy=InumPre(:,2);
 iz=InumPre(:,3);
 
+%plot both sets
 f=figure();
 a=axes(f);
 hold(a,'on');
@@ -41,9 +42,11 @@ iRib=scatter3(a,ix,iy,iz,'Marker','o');
 hold(a,'off');
 view(a,3);
 
-
+%Find the shortest distance between each of the two data sets
 [k,dist]=dsearchn([kx,ky,kz],[ix,iy,iz]);
+%Remove outliers based on percentiles
 noOut=rmoutliers(dist,'Percentile',[0,93]);
+%find median distance
 medData=median(noOut);
 
 
