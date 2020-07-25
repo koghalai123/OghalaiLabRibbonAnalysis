@@ -133,8 +133,8 @@ organVec2=["nucleus","presynaptic","postsynaptic","extra"];
 
 organ2=(organVec2(chooseOrgCha));
 if organ2=='nucleus'
-    app.NCenters=voxNucData.*resizedVoxel;
-    app.NRadii=3.5*ones(size(voxNucData,1),1);
+    app.newCenters=voxNucData.*resizedVoxel;
+    app.mu=3.5*ones(size(voxNucData,1),1);
 elseif organ2=='presynaptic'
 %     for i = size(f2.UserData,1)
 %         mat=[ones(7,1)*f2.UserData(i,1),ones(7,1)*f2.UserData(i,2),ones(7,1)*f2.UserData(i,3),ones(7,1)*i,];

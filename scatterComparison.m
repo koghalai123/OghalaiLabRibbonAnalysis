@@ -39,8 +39,10 @@ a=axes(f);
 hold(a,'on');
 kRib=scatter3(a,kx,ky,kz,'Marker','o');
 iRib=scatter3(a,ix,iy,iz,'Marker','o');
+kNuc=scatter3(a,numNuc(:,1),numNuc(:,2),numNuc(:,3),'Marker','o');
 hold(a,'off');
 view(a,3);
+axis(a,'equal');
 
 %Find the shortest distance between each of the two data sets
 [k,dist]=dsearchn([kx,ky,kz],[ix,iy,iz]);

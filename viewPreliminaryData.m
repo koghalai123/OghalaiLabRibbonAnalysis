@@ -49,4 +49,4 @@ function [storeCenters,storeRadii]=viewPreliminaryData(nucleiData,range,sensitiv
             storeRadii=[storeRadii;radii];
         end
     end
-    end
+end
