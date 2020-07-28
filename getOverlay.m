@@ -1,4 +1,18 @@
 function [finalArr,pixLoc]=getOverlay(voxNucData,preStruct,postStruct,organ,imageSize,resizedVoxel,resizedDimensions,dimensions)
+%
+% function [finalArr,pixLoc]=getOverlay(voxNucData,preStruct,postStruct,organ,imageSize,resizedVoxel,resizedDimensions,dimensions)
+%
+% getOverlay takes in organs and uses size measurements to plot them on a
+% rendered 3D image
+%
+% voxNucData is the nucleus data in actual distance
+% pre/postStruct is a structure containing synapses found on each slice
+% organ is a string with what organ is being looked at
+% imageSize is the size of the x/y limits
+% resized Voxel is the size of the voxels after being resized
+% resizedDimensions is the size of the image after being resized
+% dimensions is the size of the original image
+
 meshX=[];
 meshY=[];
 meshZ=[];

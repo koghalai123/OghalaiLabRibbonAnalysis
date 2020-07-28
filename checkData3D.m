@@ -8,6 +8,22 @@
 
 function checkData3D(app,resizedAllData,chooseOrgCha,nucData,preStruct,postStruct,imageSize,channelVec,resizedDimensions,resizedVoxel,dimensions)
 
+
+% function checkData3D(app,resizedAllData,chooseOrgCha,nucData,preStruct,postStruct,imageSize,channelVec,resizedDimensions,resizedVoxel,dimensions)
+%
+% Creates a popup displaying 3D data and organs. 
+%
+% app is the GUI object
+% chooseOrgCha is a number corresponding to the organ that should be shown.
+% 1--nuclei 2--Presynaptic 3--Postsynaptic
+% nucData is the locations of the nuclei
+% preStruct/postStruct is a structure containing pre/postsynaptic locations
+% imageSize is how many pixels in the x/y the image is
+% resizedDimensions is the size of the data matrix after being resized
+% resizedVoxel is the size of a voxel after being resized
+% dimensions is the dimensions of the original data
+
+
 %User chooses which organ to look at here
 organVec=["nucleus","presynaptic","postsynaptic","extra"];
 %which channel is associated with each organ
