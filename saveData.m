@@ -64,16 +64,16 @@ nucTab=array2table(nucleusData);
 nucTab.Properties.VariableNames = {'X(Micron)','Y(Micron)','Z(Micron)','Radius(Micron)'};
 writetable(nucTab,XLFileNames(3));
 
-R1Tab=array2table([transpose(R1Scat.XData),transpose(R1Scat.YData),transpose(R1Scat.ZData)]);
-R1Tab.Properties.VariableNames = {'X(Micron)','Y(Micron)','Z(Micron)'};
-writetable(R1Tab,XLFileNames(4));
-
-R2Tab=array2table([transpose(R2Scat.XData),transpose(R2Scat.YData),transpose(R2Scat.ZData)]);
-R2Tab.Properties.VariableNames = {'X(Micron)','Y(Micron)','Z(Micron)'};
-writetable(R2Tab,XLFileNames(5));
+% R1Tab=array2table([transpose(R1Scat.XData),transpose(R1Scat.YData),transpose(R1Scat.ZData)]);
+% R1Tab.Properties.VariableNames = {'X(Micron)','Y(Micron)','Z(Micron)'};
+% writetable(R1Tab,XLFileNames(4));
+% 
+% R2Tab=array2table([transpose(R2Scat.XData),transpose(R2Scat.YData),transpose(R2Scat.ZData)]);
+% R2Tab.Properties.VariableNames = {'X(Micron)','Y(Micron)','Z(Micron)'};
+% writetable(R2Tab,XLFileNames(5));
 
 %Saving for easy usage in Matlab
-saveInOrigForm={'Nucleus Data','Presynaptic Ribbon Data','Postsynaptic Ribbon Data','Voxel Data','R1Scat','R2Scat','NAssociated','RAssociated';nucleusData,ribbonData(1).grouped,ribbonData(2).grouped,voxel,R1Scat,R2Scat,NAssociated,RAssociated};
+saveInOrigForm={'Nucleus Data','Presynaptic Ribbon Data','Postsynaptic Ribbon Data','Voxel Data','R1Scat','R2Scat','NAssociated','RAssociated','ribbonVar';nucleusData,ribbonData(1).grouped,ribbonData(2).grouped,voxel,R1Scat,R2Scat,NAssociated,RAssociated,ribbonData};
 origFormName=strcat(fileName,"OrigData.mat");
 save(origFormName,'saveInOrigForm');
 
@@ -82,8 +82,8 @@ save(origFormName,'saveInOrigForm');
 folderName=strcat(fileName,"Data");
 mkdir(folderName)
 
-allNames=[XLFileNames;origFormName];
+allNames=[origFormName;XLFileNames];
 
-for i = 1:size(allNames,1)
+for i = 1:4%size(allNames,1)
     movefile(allNames(i),folderName);
 end

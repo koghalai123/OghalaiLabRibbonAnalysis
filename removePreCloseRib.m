@@ -31,7 +31,7 @@ for b = 1:2
         dist(:,i)=(((nucleusData(i,1)-scaledPre(:,1)).^2)+((nucleusData(i,2)-scaledPre(:,2)).^2)+((nucleusData(i,3)-scaledPre(:,3)).^2)).^(1/2);
     end
     %Find the ones that are too close
-    [row,~]=find(dist<3.2);
+    [row,~]=find(dist<3.5);
     toDelete=[];
     toDelete=unique(row);
     allGroups=[1:size(scaledPre,1)];

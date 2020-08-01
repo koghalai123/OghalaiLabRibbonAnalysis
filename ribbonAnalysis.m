@@ -19,7 +19,7 @@ function [ribbonFinal,noFit]=ribbonAnalysis(ribbonPoints,voxel,groupSize)
     noFit=[];
     ribbonFinal=struct([]);
     %just group the ribbons 
-    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3))],.19,groupSize);
+    idx=dbscan([ribbonPoints(:,1)*(voxel(1)),ribbonPoints(:,2)*(voxel(2)),ribbonPoints(:,3)*(voxel(3)/2)],.19,groupSize);
     
     D=ribbonPoints;
     %figure;
