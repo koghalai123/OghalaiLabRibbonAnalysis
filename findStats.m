@@ -18,6 +18,8 @@ function [Radii,Centers,DCircles,DRadii] = findStats(app,type,slice)
 %
 %
 %
+DCircles=[];
+DRadii=[];
     if type==1 %check if we are finding data for nucleus or ribbons
         Centers=[];
         Radii=[];
@@ -39,16 +41,24 @@ function [Radii,Centers,DCircles,DRadii] = findStats(app,type,slice)
     elseif type==2%check if we are finding data for nucleus or ribbons
         %Look for discarded ribbon locations, as well as the kept ribbon
         %locations on this particular slice.
-        A=app.discardedRPre(:,3)==slice;
+        if size(app.discardedRPre,1)>0
+            A=app.discardedRPre(:,3)==slice;
+            DCircles=app.discardedRPre(A,:);
+            DRadii=app.RRadEditField.Value;
+        end
+        
         Centers=app.presynapticPositions(slice).points;
         Radii=str2double(app.RRadEditField.Value);
-        DCircles=app.discardedRPre(A,:);
-        DRadii=app.RRadEditField.Value;
+        
     elseif type==3
-        A=app.discardedRPost(:,3)==slice;
+        if size(app.discardedRPost,1)>0
+            A=app.discardedRPost(:,3)==slice;
+            DCircles=app.discardedRPost(A,:);
+            DRadii=app.RRadEditField.Value;
+        end
+        
         Centers=app.postsynapticPositions(slice).points;
         Radii=str2double(app.RRadEditField.Value);
-        DCircles=app.discardedRPost(A,:);
-        DRadii=app.RRadEditField.Value;
+        
     end
 end

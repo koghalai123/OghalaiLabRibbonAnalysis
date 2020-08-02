@@ -142,6 +142,7 @@ for s = 1:numSeries
     numImages = r.getImageCount();
     imageList = cell(numImages, 2);
     colorMaps = cell(numImages);
+    
     for i = 1:numImages
         if mod(i, 72) == 1
             fprintf('\n    ');
