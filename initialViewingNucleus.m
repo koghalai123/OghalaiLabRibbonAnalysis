@@ -42,6 +42,13 @@ isNucleus=true;
 startValue=1;
 stopValue=0;
 %Threshold just one slice
+% gradMag=imgradient(data);
+% filled=imfill(gradMag,'holes');
+
+
+
+
+
 [allFiltered]=initialThreshold(threshold,medRange,data,isNucleus,minimum,maximum,range(1),range(2),startValue,stopValue);
 
 
